@@ -18,6 +18,12 @@ export function fetchingAccount(){
   }
 }
 
+export function logOut(){
+  return {
+    type: "LOG_OUT"
+  }
+}
+
 export function createdAccount(){
   return {
     type: "FETCHED_ACCOUNT"
@@ -39,7 +45,6 @@ export function login(user){
       })
     }).then((res) => res.json())
     .then(userInfo => {
-      localStorage.setItem('name', userInfo.name)
       localStorage.setItem('jwt', userInfo.jwt)
       dispatch(loggedIn())
     })
