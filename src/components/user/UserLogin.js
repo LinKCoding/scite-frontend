@@ -3,12 +3,12 @@ import React from 'react';
 
 export default class UserLogin extends React.Component {
   state = {
-    username: "",
+    email: "",
     password: ""
   }
 
-  changeName = (event) => {
-    this.setState({username: event.target.value})
+  changeEmail = (event) => {
+    this.setState({email: event.target.value})
   }
   changePassword = (event) => {
     this.setState({password: event.target.value})
@@ -21,7 +21,7 @@ export default class UserLogin extends React.Component {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        username: this.state.username,
+        email: this.state.email,
         password: this.state.password
       })
     })
@@ -42,9 +42,9 @@ export default class UserLogin extends React.Component {
   render(){
     return (<form className="form" onSubmit={this.handleSubmit}>
       <label className="label">
-      Username:
+      Email:
       </label>
-      <input className="inputField" type="text" name="name" onChange={this.changeName} value={this.state.username}/>
+      <input className="inputField" type="text" name="name" onChange={this.changeName} value={this.state.email}/>
       <label className="label">
       Password:
       </label>
