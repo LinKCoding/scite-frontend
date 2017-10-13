@@ -6,15 +6,23 @@ import { BrowserRouter as Router } from 'react-router-dom'
 
 // import { createStore, combineReducers, applyMiddleware } from 'redux'
 // BUT FOR NOW, USE ONE ROOTREDUCER
-import { createStore, applyMiddleware } from 'redux'
+import { createStore, applyMiddleware, combineReducers } from 'redux'
+import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
 import userReducer from './reducers/userReducer'
+import articleReducer from './reducers/articleReducer'
+import noteReducer from './reducers/noteReducer'
 
 import registerServiceWorker from './registerServiceWorker';
-// import thunk from 'redux-thunk'
 
-const store = createStore(userReducer, applyMiddleware(thunk))
+const rootReducers = combineReducers({
+  user: userReducer,
+  article: articleReducer,
+  note: noteReducer
+})
+
+const store = createStore(rootReducers, composeWithDevTools(applyMiddleware(thunk)))
 
 ReactDOM.render(<Provider store={store}><Router><App /></Router></Provider>, document.getElementById('root'));
 registerServiceWorker();

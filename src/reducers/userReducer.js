@@ -1,19 +1,11 @@
-export default function userReducer(state = { user: "", loggedIn: false, fetchingAccount: false, jwt: "" }, action) {
+export default function userReducer(state = { loggedIn: false, fetchingAccount: false, user_id:"" }, action) {
   switch(action.type) {
     case "SET_USER":
       return Object.assign({}, state, {
-        user: action.payload,
-        fetchingAccount: false
-      })
-    case "LOGIN":
-      return Object.assign({}, state, {
-        user: action.payload.name,
-        jwt: action.payload.jwt,
-        fetchingAccount: false
+        user: action.payload
       })
     case "SIGNUP":
       return Object.assign({}, state, {
-        user: action.payload.name,
         fetchingAccount: false
       })
     case "FETCHING_ACCOUNT":
@@ -22,11 +14,12 @@ export default function userReducer(state = { user: "", loggedIn: false, fetchin
       return Object.assign({}, state, { fetchingAccount: false })
     case "LOGGED_IN":
       return Object.assign({}, state, {
+        fetchingAccount: false,
         loggedIn: true,
-        user: ""
+        user_id: action.payload
       })
     case "LOG_OUT":
-      return Object.assign({}, state, { loggedIn: false})
+      return Object.assign({}, state, { loggedIn: false })
     default:
       return state
   }

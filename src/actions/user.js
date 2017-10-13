@@ -1,6 +1,7 @@
-export function loggedIn(){
+export function loggedIn(user_id){
   return{
-    type: "LOGGED_IN"
+    type: "LOGGED_IN",
+    payload: user_id
   }
 }
 
@@ -15,6 +16,12 @@ export function setUser(user){
 export function fetchingAccount(){
   return {
     type: "FETCHING_ACCOUNT"
+  }
+}
+
+export function fetchedAccount(){
+  return {
+    type: "FETCHED_ACCOUNT"
   }
 }
 
@@ -46,7 +53,7 @@ export function login(user){
     }).then((res) => res.json())
     .then(userInfo => {
       localStorage.setItem('jwt', userInfo.jwt)
-      dispatch(loggedIn())
+      dispatch(loggedIn(userInfo.user_id))
     })
   }
 }
