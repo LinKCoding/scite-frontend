@@ -14,7 +14,7 @@ export function fetchedNotes(notes){
 export function fetchNotes(){
   return function(dispatch){
     dispatch(fetchingNotes())
-    fetch("http://localhost:3000/api/v1/articles", {
+    fetch("http://localhost:3000/api/v1//usernotes", {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -23,6 +23,7 @@ export function fetchNotes(){
     })
     .then((res) => res.json())
     .then((notes) => {
+      console.log(notes);
       dispatch(fetchedNotes(notes))
     })
   }

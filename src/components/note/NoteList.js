@@ -3,22 +3,11 @@ import NoteItem from './NoteItem'
 
 class NoteList extends React.Component {
   render() {
-  //   if(this.props.notes.length !== 0) {
-  //   return(
-  //     <div>
-  //      this.props.notes.map((note) => {
-  //        console.log("hi");
-  //      })
-  //     </div>
-  //   ) else (
-  //     return(
-  //       null
-  //     )
-  //   )
-  // }
+
     if(this.props.notes.length !== 0){
       return(
         <div>
+        
           {this.props.notes.map((note) => {
             console.log(note)
             return <NoteItem key={note.id}/>
@@ -27,7 +16,7 @@ class NoteList extends React.Component {
         </div>
       )
     } else {
-      return (null)
+      return null
     }
   }
 }
