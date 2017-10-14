@@ -2,7 +2,7 @@ export default function userReducer(state = { loggedIn: false, fetchingAccount: 
   switch(action.type) {
     case "SET_USER":
       return Object.assign({}, state, {
-        user: action.payload
+        user_id: action.payload
       })
     case "SIGNUP":
       return Object.assign({}, state, {
@@ -12,6 +12,7 @@ export default function userReducer(state = { loggedIn: false, fetchingAccount: 
       return Object.assign({}, state, { fetchingAccount: true })
     case "FETCHED_ACCOUNT":
       return Object.assign({}, state, { fetchingAccount: false })
+      // might not need ^ anymore
     case "LOGGED_IN":
       return Object.assign({}, state, {
         fetchingAccount: false,
@@ -19,7 +20,19 @@ export default function userReducer(state = { loggedIn: false, fetchingAccount: 
         user_id: action.payload
       })
     case "LOG_OUT":
-      return Object.assign({}, state, { loggedIn: false })
+      return Object.assign({}, state, {
+        loggedIn: false,
+        user_id: "",
+        article: {
+          articles: [],
+          fetching_articles: false
+        },
+        note: {
+          notes:[],
+          currentNote: {},
+          fetchingNotes: false
+        }
+       })
     default:
       return state
   }
