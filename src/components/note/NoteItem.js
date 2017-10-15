@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { setNote } from '../../actions/note'
 import ArticleWindow  from '../ArticleWindow'
+import Dictionary from '../Dictionary'
 
 class NoteItem extends React.Component {
 
@@ -11,12 +12,11 @@ class NoteItem extends React.Component {
 
 
   render(){
-    // console.log(this.articleID);
-    console.log(this.props.currentNote);
 
     return(
       <div>
-        <ArticleWindow article={this.props.currentNote.article ? this.props.currentNote.article : null }/>
+        {/*<ArticleWindow article={this.props.currentNote.article ? this.props.currentNote.article : null }/> */}
+        <Dictionary />
       </div>
     )
   }
