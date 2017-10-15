@@ -1,5 +1,5 @@
 import React from 'react'
-import Article from './Article'
+import ArticleWindow  from './ArticleWindow'
 import CreateNewNote from './CreateNewNote'
 import { connect } from 'react-redux'
 import { fetchArticles } from '../actions/article'
@@ -15,7 +15,7 @@ class Homepage extends React.Component {
     return (
       <div>
         <span> ARTICLE OF THE DAY </span>
-        <Article article={ articles.length !== 0 ? articles[articles.length - 1] : null}/>
+        <ArticleWindow article={ articles.length !== 0 ? articles[articles.length - 1] : null}/>
         <CreateNewNote article_id={ articles.length !== 0 ? articles[articles.length - 1].id : null }/>
       </div>
     )

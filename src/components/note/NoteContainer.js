@@ -1,7 +1,9 @@
 import React from 'react'
 import NoteList from './NoteList'
+import NoteItem from './NoteItem'
 import { connect } from 'react-redux'
 import { fetchNotes } from '../../actions/note'
+import { Route } from 'react-router-dom'
 
 class NoteContainer extends React.Component {
   componentDidMount(){
@@ -11,7 +13,12 @@ class NoteContainer extends React.Component {
   render(){
     return(
       <div>
-        <NoteList notes={this.props.notes} />
+        <Route exact path="/notes" render={(props)=> <NoteList notes={this.props.notes} routerProps={props} /> } />
+        <Route path="/notes/:id" render={(props)=> {
+            const id = props.match.params.id
+
+            return <NoteItem routerProps={props} noteID={id}/>  }} />
+
       </div>
     )
   }
