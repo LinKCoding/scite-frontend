@@ -31,7 +31,7 @@ class Dictionary extends React.Component{
 
 
   render(){
-    console.log(this.state.definitions);
+    // console.log(this.state.definitions);
     return(
       <div>
         <form onSubmit={this.handleSubmit}>

@@ -35,6 +35,32 @@ export function settingNote(note){
   }
 }
 
+// export function updateNote(noteContent){
+//   return {
+//     type: "UPDATE_NOTE",
+//     payload: noteContent
+//   }
+// }
+
+// export function updatingNote(noteID, content){
+//   return function(dispatch){
+//     dispatch(fetchingNotes())
+//     fetch(`http://localhost:3000/api/v1/notes/${noteID}` ,{
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json',
+//         'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+//       },
+//       body: JSON.stringify({
+//         content: convertToRaw(content)
+//       })
+//     }).then(res => res.json())
+//     .then((noteContent) => {
+//       dispatch(updateNote)
+//     })
+//   }
+// }
+
 export function setNote(noteID){
   return function(dispatch){
     dispatch(fetchingNotes())
