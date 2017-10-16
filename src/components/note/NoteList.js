@@ -9,6 +9,7 @@ class NoteList extends React.Component {
       return(
         <div>
           {this.props.notes.map(note => {
+            console.log(note);
             return (<Link to={`./notes/${note.id}`}>Note for article #{note.article_id} </Link>)
           })}
 
