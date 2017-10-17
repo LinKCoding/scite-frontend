@@ -23,8 +23,3 @@ class NoteList extends React.Component {
 //can be dumb component
 
 export default NoteList
-
-// {this.props.notes.map((note) => {
-//   console.log(note)
-//   return <NoteItem key={note.id}/>
-// })}

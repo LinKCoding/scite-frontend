@@ -11,16 +11,7 @@ export default function noteReducer(state={ notes: [], currentNote: {}, fetching
         fetchingNotes: false,
         notes: action.payload
       })
-    // case "UPDATE_NOTE":
-    //   return Object.assign({}, state, {
-    //     currentNote: {
-    //       ...state,
-    //       note: {
-    //         ...state.note,
-    //         content: action.payload
-    //       }
-    //     }
-    //   })
+
     case "SETTING_NOTE":
       return Object.assign({}, state, {
         fetchingNotes: false,

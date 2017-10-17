@@ -36,18 +36,18 @@ class PlainEditor extends Component {
     // })
   }
 
-  componentWillUpdate(){
-    if(this.props.currentNote.note) {
-      const content = this.props.currentNote.note.content
-      console.log("content loaded");
-      console.log(this.props.currentNote.note.content)
-      // debugger
-      this.state.editorState = EditorState.createWithContent(convertFromRaw(JSON.parse(this.props.currentNote.note.content)))
-    } else {
-      console.log("content not loaded");
-      // this.state.editorState = EditorState.createEmpty();
-    }
-  }
+  // componentWillUpdate(){
+  //   if(this.props.currentNote.note) {
+  //     const content = this.props.currentNote.note.content
+  //     console.log("content loaded");
+  //     console.log(this.props.currentNote.note.content)
+  //     // debugger
+  //     this.state.editorState = EditorState.createWithContent(convertFromRaw(JSON.parse(this.props.currentNote.note.content)))
+  //   } else {
+  //     console.log("content not loaded");
+  //     // this.state.editorState = EditorState.createEmpty();
+  //   }
+  // }
 
   saveContent = debounce((content) => {
     fetch(`http://localhost:3000/api/v1/notes/${this.props.noteID}`, {

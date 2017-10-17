@@ -1,5 +1,6 @@
 import React from 'react'
 
+
 class CreateNewNote extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault()

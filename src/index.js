@@ -16,13 +16,21 @@ import noteReducer from './reducers/noteReducer'
 
 import registerServiceWorker from './registerServiceWorker';
 
-const rootReducers = combineReducers({
+const appReducer = combineReducers({
   user: userReducer,
   article: articleReducer,
   note: noteReducer
 })
 
-const store = createStore(rootReducers, composeWithDevTools(applyMiddleware(thunk)))
+const rootReducer = (state, action) => {
+  if(action.type === 'LOG_OUT') {
+    state = undefined
+  }
+
+  return appReducer(state, action)
+}
+
+const store = createStore(appReducer, composeWithDevTools(applyMiddleware(thunk)))
 
 ReactDOM.render(<Provider store={store}><Router><App /></Router></Provider>, document.getElementById('root'));
 registerServiceWorker();

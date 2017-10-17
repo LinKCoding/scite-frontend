@@ -6,6 +6,7 @@ import UserLogin from './components/user/UserLogin'
 import Homepage from './components/Homepage'
 import { connect } from 'react-redux'
 import ArticleContainer from './components/article/ArticleContainer'
+import LexiconContainer from './components/lexicon/LexiconContainer'
 import NoteContainer from './components/note/NoteContainer'
 
 class App extends Component {
@@ -14,6 +15,7 @@ class App extends Component {
       <div className="App">
         <Route path="/" component={Navbar}/>
         <Route path="/articles" component={ArticleContainer}/>
+        <Route path="/lexicon" component={LexiconContainer}/>
         <Route path="/notes" component={NoteContainer}/>
 
         <Route path='/signup' component={UserSignUp} />
