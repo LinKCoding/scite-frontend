@@ -19,11 +19,12 @@ class PlainEditor extends Component {
 
       // const content = window.localStorage.getItem('content');
       // const content = this.props.currentNote.note.content
-
+      console.log(this.props);
       if(this.props.currentNote.note) {
-
-        this.state.editorState = EditorState.createWithContent(convertFromRaw(JSON.parse(window.localStorage.getItem('content'))));
+        console.log("content loaded");
+        this.state.editorState = EditorState.createWithContent(convertFromRaw(JSON.parse(this.props.currentNote.note.content)));
       } else {
+        console.log("content not loaded");
         this.state.editorState = EditorState.createEmpty();
       }
     }
@@ -33,6 +34,19 @@ class PlainEditor extends Component {
     // this.setState({
     //   editorState: EditorState.createWithContent(convertFromRaw(JSON.parse(this.props.currentNote.note.content)))
     // })
+  }
+
+  componentWillUpdate(){
+    if(this.props.currentNote.note) {
+      const content = this.props.currentNote.note.content
+      console.log("content loaded");
+      console.log(this.props.currentNote.note.content)
+      // debugger
+      this.state.editorState = EditorState.createWithContent(convertFromRaw(JSON.parse(this.props.currentNote.note.content)))
+    } else {
+      console.log("content not loaded");
+      // this.state.editorState = EditorState.createEmpty();
+    }
   }
 
   saveContent = debounce((content) => {
@@ -50,6 +64,8 @@ class PlainEditor extends Component {
 
   onChange = (editorState) => {
       const contentState = editorState.getCurrentContent();
+      // const checkState = convertToRaw(contentState)
+      // debugger
       this.saveContent(contentState);
       this.setState({
         editorState,

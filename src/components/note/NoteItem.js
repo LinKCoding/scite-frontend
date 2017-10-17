@@ -13,14 +13,21 @@ class NoteItem extends React.Component {
 
 
   render(){
-    return(
-      <div>
-        {/*<ArticleWindow article={this.props.currentNote.article ? this.props.currentNote.article : null }/>
+
+    if(this.props.currentNote.note){
+      return(
+        <div>
+          {/*<ArticleWindow article={this.props.currentNote.article ? this.props.currentNote.article : null }/>
         */}
-        <Dictionary />
-        <PlainEditor noteID={this.props.noteID}/>
-      </div>
-    )
+          <Dictionary />
+          <PlainEditor noteID={this.props.noteID} noteContent={this.props.currentNote.note.content}/>
+        </div>
+      )
+    } else {
+      return(
+        <h3> loading...</h3>
+      )
+    }
   }
 }
 

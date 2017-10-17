@@ -72,8 +72,15 @@ export function setNote(noteID){
       }
     })
       .then((res) => res.json())
-      .then((note) => {
-        dispatch(settingNote(note))
+      .then((entireNote) => {
+        let newContent = entireNote.note.content
+        newContent = newContent.replace(/=>/g, ":")
+        entireNote = {...entireNote, note: {...entireNote.note, content: newContent}}
+        // debugger
+        // entireNote = {...entireNote, note:{...entireNote.note, content: JSON.parse(entireNote.note.content.slice(1, entireNote.note.content.length -1))}}
+        //
+        // debugger
+        dispatch(settingNote(entireNote))
       })
   }
 }
