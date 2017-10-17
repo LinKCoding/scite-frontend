@@ -30,7 +30,7 @@ const rootReducer = (state, action) => {
   return appReducer(state, action)
 }
 
-const store = createStore(appReducer, composeWithDevTools(applyMiddleware(thunk)))
+const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)))
 
 ReactDOM.render(<Provider store={store}><Router><App /></Router></Provider>, document.getElementById('root'));
 registerServiceWorker();

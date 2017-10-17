@@ -15,4 +15,5 @@ class LexiconContainer extends React.Component {
   }
 }
 
+
 export default connect()(LexiconContainer)

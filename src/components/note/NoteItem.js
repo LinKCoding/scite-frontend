@@ -17,8 +17,8 @@ class NoteItem extends React.Component {
     if(this.props.currentNote.note){
       return(
         <div>
-          {/*<ArticleWindow article={this.props.currentNote.article ? this.props.currentNote.article : null }/>
-        */}
+          {<ArticleWindow article={this.props.currentNote.article ? this.props.currentNote.article : null }/>
+        }
           <Dictionary />
           <PlainEditor noteID={this.props.noteID} noteContent={this.props.currentNote.note.content}/>
         </div>

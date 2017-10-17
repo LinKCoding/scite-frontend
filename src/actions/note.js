@@ -76,11 +76,26 @@ export function setNote(noteID){
         let newContent = entireNote.note.content
         newContent = newContent.replace(/=>/g, ":")
         entireNote = {...entireNote, note: {...entireNote.note, content: newContent}}
-        // debugger
-        // entireNote = {...entireNote, note:{...entireNote.note, content: JSON.parse(entireNote.note.content.slice(1, entireNote.note.content.length -1))}}
-        //
-        // debugger
+
         dispatch(settingNote(entireNote))
       })
+  }
+}
+
+export function createNote(article){
+  return function(dispatch){
+    fetch('http://localhost:3000/api/v1/notes/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+      },
+      body: JSON.stringify({
+        'article_id': article.id
+      })
+    }).then(res => res.json())
+    .then((note) => {
+      dispatch(settingNote(note))
+    })
   }
 }

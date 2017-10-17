@@ -12,6 +12,7 @@ class Navbar extends React.Component {
   render() {
     return(
       <div>
+        <NavLink to="/"> Homepage </NavLink>
         <NavLink to="/articles"> Articles </NavLink>
         <NavLink to="/lexicon"> Lexicon </NavLink>
         <NavLink to="/notes"> Notes </NavLink>

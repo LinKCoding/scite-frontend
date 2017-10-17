@@ -44,8 +44,8 @@ export function setArticle(noteID){
       }
     })
       .then((res) => res.json())
-      .then((articles) => {
-        dispatch(settingArticle(articles))
+      .then((article) => {
+        dispatch(settingArticle(article))
       })
   }
 }

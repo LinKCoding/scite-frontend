@@ -2,7 +2,7 @@ import React from 'react'
 
 class Definition extends React.Component{
   render(){
-    const {type, defenition, example} = this.props.definition
+    const {type, defenition, /*example*/} = this.props.definition
     console.log(this.props);
     return(
       <li>

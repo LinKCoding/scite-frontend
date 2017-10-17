@@ -6,7 +6,7 @@ class ArticleWindow extends React.Component {
 
     if(this.props.article) {
     return(
-      <object data={this.props.article.url} />
+      <object data={this.props.article.url} >Article goes here</object>
     )} else {
       return null
     }
@@ -14,4 +14,4 @@ class ArticleWindow extends React.Component {
   }
 }
 
-export default ArticleWindow 
+export default ArticleWindow

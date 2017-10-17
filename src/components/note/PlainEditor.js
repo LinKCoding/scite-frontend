@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor';
+import Editor from 'draft-js-plugins-editor';
 import { EditorState, convertToRaw, convertFromRaw } from 'draft-js';
 import createInlineToolbarPlugin from 'draft-js-inline-toolbar-plugin';
 import editorStyles from './editorStyles.css';
@@ -15,18 +15,20 @@ const plugins = [inlineToolbarPlugin];
 class PlainEditor extends Component {
   constructor(props) {
       super(props);
-      this.state = { };
+      this.state = {
+        editorState: EditorState.createWithContent(convertFromRaw(JSON.parse(this.props.currentNote.note.content)))
+      }
 
       // const content = window.localStorage.getItem('content');
       // const content = this.props.currentNote.note.content
-      console.log(this.props);
-      if(this.props.currentNote.note) {
-        console.log("content loaded");
-        this.state.editorState = EditorState.createWithContent(convertFromRaw(JSON.parse(this.props.currentNote.note.content)));
-      } else {
-        console.log("content not loaded");
-        this.state.editorState = EditorState.createEmpty();
-      }
+      // console.log(this.props);
+      // if(this.props.currentNote.note) {
+      //   console.log("content loaded");
+      //   this.state.seditorState = EditorState.createWithContent(convertFromRaw(JSON.parse(this.props.currentNote.note.content)));
+      // } else {
+      //   console.log("content not loaded");
+      //   this.state.editorState = EditorState.createEmpty();
+      // }
     }
 
   componentDidMount(){

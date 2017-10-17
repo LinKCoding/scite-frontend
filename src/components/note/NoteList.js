@@ -1,5 +1,5 @@
 import React from 'react'
-import NoteItem from './NoteItem'
+// import NoteItem from './NoteItem'
 import { Link } from 'react-router-dom'
 
 class NoteList extends React.Component {
@@ -10,7 +10,7 @@ class NoteList extends React.Component {
         <div>
           {this.props.notes.map(note => {
             console.log(note);
-            return (<Link to={`./notes/${note.id}`}>Note for article #{note.article_id} </Link>)
+            return (<Link to={`/notes/${note.id}`}>Note for article #{note.article_id} </Link>)
           })}
 
         </div>
