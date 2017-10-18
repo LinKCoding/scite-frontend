@@ -19,20 +19,20 @@ export default function userReducer(state = { loggedIn: false, fetchingAccount: 
         loggedIn: true,
         user_id: action.payload
       })
-    case "LOG_OUT":
-      return Object.assign({}, state, {
-        loggedIn: false,
-        user_id: "",
-        article: {
-          articles: [],
-          fetching_articles: false
-        },
-        note: {
-          notes:[],
-          currentNote: {},
-          fetchingNotes: false
-        }
-       })
+    // case "LOG_OUT":
+    //   return Object.assign({}, state, {
+    //     loggedIn: false,
+    //     user_id: "",
+    //     article: {
+    //       articles: [],
+    //       fetching_articles: false
+    //     },
+    //     note: {
+    //       notes:[],
+    //       currentNote: {},
+    //       fetchingNotes: false
+    //     }
+    //    })
     default:
       return state
   }

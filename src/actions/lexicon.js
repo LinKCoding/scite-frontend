@@ -1,22 +1,28 @@
-export function addWord(word){
-  type: 'ADD_WORD'
-  payload: word
+export function fetchingLexicon(){
+  return {
+    type: "FETCHING_LEXICON"
+  }
 }
 
-export function addingWord(word, noteID){
+export function setLexicon(list){
+  return {
+    type: "SET_LEXICON",
+    payload: list
+  }
+}
+
+export function fetchedLexicon(){
   return function(dispatch){
+    dispatch(fetchingLexicon())
     fetch('http://localhost:3000/api/v1/lexicon/', {
-      method: 'POST',
+      method: 'GET',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${localStorage.getItem('jwt')}`
-      },
-      body: JSON.stringify({
-        word
-      })
+      }
     }).then(res => res.json())
-    .then((note) => {
-      dispatch(addWord(word))
+    .then((vocabList) => {
+      dispatch(setLexicon(vocabList))
     })
   }
 }

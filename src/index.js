@@ -13,13 +13,15 @@ import { Provider } from 'react-redux'
 import userReducer from './reducers/userReducer'
 import articleReducer from './reducers/articleReducer'
 import noteReducer from './reducers/noteReducer'
+import lexiconReducer from './reducers/lexiconReducer'
 
 import registerServiceWorker from './registerServiceWorker';
 
 const appReducer = combineReducers({
   user: userReducer,
   article: articleReducer,
-  note: noteReducer
+  note: noteReducer,
+  lexicon: lexiconReducer
 })
 
 const rootReducer = (state, action) => {

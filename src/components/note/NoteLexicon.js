@@ -1,5 +1,5 @@
 import React from 'react'
-import LexiconItem from '../lexicon/LexiconItem'
+import NoteLexiconItem from './NoteLexiconItem'
 
 const NoteLexicon = (props) => {
   console.log(props);
@@ -7,7 +7,7 @@ const NoteLexicon = (props) => {
 
     return(
       props.lexicon.map((word) => {
-        return <LexiconItem word={word}/>
+        return <NoteLexiconItem word={word}/>
       })
     )
   } else {

@@ -1,11 +1,20 @@
 import React from 'react'
+import LexiconItem from './LexiconItem'
 
 const LexiconList = (props) => {
-  console.log(props);
   return(
-    <div>
-      PLACEHOLDER has changed
-    </div>
+    <table >
+      <tr>
+        <th>Word</th>
+        <th>Definition</th>
+        <th>Edit Article</th>
+      </tr>
+      {
+        props.lexicon.map( word => {
+          return <LexiconItem word={word}/>
+        })
+      }
+    </table>
   )
 }
 
