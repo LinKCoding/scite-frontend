@@ -34,6 +34,24 @@ export function fetchArticles(){
     }
   }
 
+  export function fetchArticlesAndSetLatest(){
+    return function(dispatch) {
+      dispatch(fetchingArticles())
+      fetch("http://localhost:3000/api/v1/articles", {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+        .then((res) => res.json())
+        .then((articles) => {
+          const latestArticle = articles[articles.length-1]
+          dispatch(fetchedArticles(articles))
+          dispatch(settingArticle(latestArticle))
+        })
+      }
+    }
+
 export function setArticle(noteID){
   return function(dispatch){
     dispatch(fetchingArticles())

@@ -2,7 +2,7 @@ import React from 'react'
 import ArticleWindow  from './ArticleWindow'
 import CreateNewNote from './CreateNewNote'
 import { connect } from 'react-redux'
-import { fetchArticles } from '../actions/article'
+import { fetchArticlesAndSetLatest } from '../actions/article'
 import { createNote } from '../actions/note'
 import { Redirect } from 'react-router-dom'
 
@@ -11,58 +11,57 @@ import { Redirect } from 'react-router-dom'
 class Homepage extends React.Component {
   state = {
     navigating: false,
-    latestArticle: {}
+    latestArticle: {},
+    currentNote: {}
   }
 
   componentDidMount(){
-    this.props.fetchArticles()
+    this.props.fetchArticlesAndSetLatest()
+
   }
 
   handleClick = () => {
-    console.log(this.props.articles[this.props.articles.length-1]);
+    console.log(this.props);
     this.props.createNote(this.props.articles[this.props.articles.length-1])
     this.setState({
-      navigating: true,
-      latestArticle: this.props.articles[this.props.articles.length-1]
+      navigating: true
     })
   }
 
   render(){
     const { articles } = this.props
     const { navigating } = this.state
-
-    if(navigating){
-      console.log("hitting this");
-      return <Redirect to="/notes/" push={true}/>
+    console.log(this.props);
+    if(navigating && this.props.note.note){
+      return <Redirect to={`/notes/${this.props.note.note.id}`} push={true}/>
     } else {
       return (
         <div>
           <span> ARTICLE OF THE DAY </span>
-          <ArticleWindow article={ articles.length !== 0 ? articles[articles.length - 1] : null}/>
+          {/*<ArticleWindow article={ articles.length !== 0 ? articles[articles.length - 1] : null}/>*/}
           <button onClick={this.handleClick}> Start on a new note! </button>
         </div>
       )
     }
   }
 }
-// <CreateNewNote article_id={ articles.length !== 0 ? articles[articles.length - 1].id : null }/>
-//smart component to be sent current article of the day and save it to store
+
 
 function mapStateToProps(state){
   return {
-    articles: state.article.articles
+    articles: state.article.articles,
+    note: state.note.currentNote
   }
 }
 
 function mapDispatchToProps(dispatch){
   return {
-    fetchArticles: () => {
-      dispatch(fetchArticles())
+    fetchArticlesAndSetLatest: () => {
+      dispatch(fetchArticlesAndSetLatest())
     },
     createNote: (article)=> {
       dispatch(createNote(article))
     }
-
   }
 }
 

@@ -79,7 +79,6 @@ class PlainEditor extends Component {
   };
 
   render() {
-    console.log(this.props.currentNote.note);
     return (
       <div className={editorStyles.editor} onClick={this.focus}>
         <Editor
