@@ -3,16 +3,16 @@ export function addWord(word){
   payload: word
 }
 
-export function addingWord(word){
+export function addingWord(word, noteID){
   return function(dispatch){
-    fetch('http://localhost:3000/api/v1/notes/', {
+    fetch('http://localhost:3000/api/v1/lexicon/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${localStorage.getItem('jwt')}`
       },
       body: JSON.stringify({
-        'article_id': article.id
+        word
       })
     }).then(res => res.json())
     .then((note) => {

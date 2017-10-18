@@ -35,32 +35,6 @@ export function settingNote(note){
   }
 }
 
-// export function updateNote(noteContent){
-//   return {
-//     type: "UPDATE_NOTE",
-//     payload: noteContent
-//   }
-// }
-
-// export function updatingNote(noteID, content){
-//   return function(dispatch){
-//     dispatch(fetchingNotes())
-//     fetch(`http://localhost:3000/api/v1/notes/${noteID}` ,{
-//       method: 'POST',
-//       headers: {
-//         'Content-Type': 'application/json',
-//         'Authorization': `Bearer ${localStorage.getItem('jwt')}`
-//       },
-//       body: JSON.stringify({
-//         content: convertToRaw(content)
-//       })
-//     }).then(res => res.json())
-//     .then((noteContent) => {
-//       dispatch(updateNote)
-//     })
-//   }
-// }
-
 export function setNote(noteID){
   return function(dispatch){
     dispatch(fetchingNotes())
@@ -96,6 +70,35 @@ export function createNote(article){
     }).then(res => res.json())
     .then((note) => {
       dispatch(settingNote(note))
+    })
+  }
+}
+
+
+// actions for lexicon
+export function addWord(word){
+  return {
+    type: 'ADD_WORD',
+    payload: word
+  }
+}
+
+export function addingWord(word, noteID){
+  return function(dispatch){
+    fetch('http://localhost:3000/api/v1/lexicon/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+      },
+      body: JSON.stringify({
+        'word': word.word,
+        'definition': word.definition,
+        'note_id': noteID
+      })
+    }).then(res => res.json())
+    .then((lexicon) => {
+      dispatch(addWord(lexicon))
     })
   }
 }

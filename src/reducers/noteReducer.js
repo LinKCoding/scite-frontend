@@ -11,11 +11,17 @@ export default function noteReducer(state={ notes: [], currentNote: {}, fetching
         fetchingNotes: false,
         notes: action.payload
       })
-
     case "SETTING_NOTE":
       return Object.assign({}, state, {
         fetchingNotes: false,
         currentNote: action.payload
+      })
+    case "ADD_WORD":
+      return Object.assign({}, state, {
+        currentNote: {
+          ...state.currentNote,
+          lexicon: [...state.currentNote.lexicon, action.payload]
+        }
       })
     default:
       return state
