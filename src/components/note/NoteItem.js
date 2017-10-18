@@ -4,6 +4,7 @@ import { setNote } from '../../actions/note'
 import ArticleWindow  from '../ArticleWindow'
 import Dictionary from '../Dictionary'
 import PlainEditor from './PlainEditor'
+import NoteLexicon from './NoteLexicon'
 
 class NoteItem extends React.Component {
 
@@ -20,6 +21,7 @@ class NoteItem extends React.Component {
           {<ArticleWindow article={this.props.currentNote.article ? this.props.currentNote.article : null }/>
         }
           <Dictionary />
+          <NoteLexicon lexicon={this.props.currentNote.lexicon}/>
           <PlainEditor noteID={this.props.noteID} noteContent={this.props.currentNote.note.content}/>
         </div>
       )

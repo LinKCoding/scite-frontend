@@ -4,7 +4,8 @@ class LexiconItem extends React.Component{
   render(){
     return(
       <div>
-        Implement me already
+        <span>Word: {this.props.word.word}</span><br/>
+        <span>Definition: {this.props.word.definition}</span>
       </div>
     )
   }

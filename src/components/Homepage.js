@@ -31,14 +31,13 @@ class Homepage extends React.Component {
   render(){
     const { articles } = this.props
     const { navigating } = this.state
-    console.log(this.props);
     if(navigating && this.props.note.note){
       return <Redirect to={`/notes/${this.props.note.note.id}`} push={true}/>
     } else {
       return (
         <div>
           <span> ARTICLE OF THE DAY </span>
-          {/*<ArticleWindow article={ articles.length !== 0 ? articles[articles.length - 1] : null}/>*/}
+          <ArticleWindow article={ articles.length !== 0 ? articles[articles.length - 1] : null}/>
           <button onClick={this.handleClick}> Start on a new note! </button>
         </div>
       )

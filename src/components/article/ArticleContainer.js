@@ -9,9 +9,7 @@ class ArticleContainer extends React.Component {
     this.props.fetchArticles()
   }
   render(){
-    console.log(this.props.articles);
     return(
-
       <div>
         <ArticleList articles={this.props.articles ? this.props.articles : null}/>
       </div>
