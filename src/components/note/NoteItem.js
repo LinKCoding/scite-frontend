@@ -16,14 +16,19 @@ class NoteItem extends React.Component {
 
   render(){
 
+
     if(this.props.currentNote.note){
+      const relevantLexicon = this.props.lexicon.filter((word) => {
+        return word.note_id === parseInt(this.props.currentNote.note.id, 10)
+      })
+      console.log(relevantLexicon);
       return(
         <div>
           {<ArticleWindow article={this.props.currentNote.article ? this.props.currentNote.article : null }/>
         }
           <Dictionary />
           <CreateNewLexicon noteID={this.props.noteID}/>
-          <NoteLexicon lexicon={this.props.currentNote.lexicon}/>
+          <NoteLexicon lexicon={relevantLexicon}/>
           <PlainEditor noteID={this.props.noteID} noteContent={this.props.currentNote.note.content}/>
         </div>
       )

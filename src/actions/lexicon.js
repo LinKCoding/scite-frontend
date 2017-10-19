@@ -46,3 +46,19 @@ export function updateLexicon(word, lexiconID){
     })
   }
 }
+
+export function deleteLexicon(lexiconID){
+  return function(dispatch){
+    dispatch(fetchingLexicon())
+    fetch(`http://localhost:3000/api/v1/lexicon/${lexiconID}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+      }
+    }).then(res => res.json())
+    .then((vocabList) => {
+      dispatch(setLexicon(vocabList))
+    })
+  }
+}

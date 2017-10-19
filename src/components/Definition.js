@@ -1,9 +1,9 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 class Definition extends React.Component{
   render(){
-    const {type, defenition, /*example*/} = this.props.definition
-    console.log(this.props);
+    const {type, defenition} = this.props.definition
     return(
       <li>
         <p>{type}</p>
