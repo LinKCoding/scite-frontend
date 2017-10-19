@@ -1,6 +1,7 @@
 import React from 'react'
-import { Route } from 'react-router-dom'
 import LexiconList from './LexiconList'
+import LexiconDetail from './LexiconDetail'
+import { Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { fetchedLexicon } from '../../actions/lexicon'
 
@@ -14,7 +15,14 @@ class LexiconContainer extends React.Component {
     if(this.props.lexicon.length !== 0) {
       return(
         <div>
-          <Route path='/lexicon' render={(props) => <LexiconList routerProps={props} lexicon={this.props.lexicon} /> } />
+          <Route exact path='/lexicon' render={(props) => <LexiconList routerProps={props} lexicon={this.props.lexicon} /> } />
+          <Route path='/lexicon/:id' render={(props)=> {
+              const id = props.match.params.id
+              const word = this.props.lexicon.filter((word) => {
+                return word.id === parseInt(id, 10)
+              })[0]
+
+              return <LexiconDetail routerProps={props} word={word}/>  }} />
         </div>
       )
     } else {

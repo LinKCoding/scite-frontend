@@ -4,16 +4,18 @@ import LexiconItem from './LexiconItem'
 const LexiconList = (props) => {
   return(
     <table >
-      <tr>
-        <th>Word</th>
-        <th>Definition</th>
-        <th>Edit Article</th>
-      </tr>
-      {
-        props.lexicon.map( word => {
-          return <LexiconItem word={word}/>
-        })
-      }
+      <tbody>
+        <tr>
+          <th>Word</th>
+          <th>Definition</th>
+          <th>Go to note</th>
+        </tr>
+        {
+          props.lexicon.map( word => {
+            return <LexiconItem word={word}/>
+          })
+        }
+      </tbody>
     </table>
   )
 }
