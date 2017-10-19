@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import Dictionary from '../Dictionary'
 import { updateLexicon } from '../../actions/lexicon'
+import { Link } from 'react-router-dom'
 
 class LexiconDetail extends React.Component{
 
@@ -22,7 +23,7 @@ class LexiconDetail extends React.Component{
   }
 
   render(){
-    const { word, definition } = this.props.word
+    const { word, definition, note_id } = this.props.word
     console.log(this.props);
     console.log(this.state);
     return(
@@ -35,6 +36,7 @@ class LexiconDetail extends React.Component{
           <input type="text" name="definition" onChange={this.handleChange} value={this.state.definition}/><br/>
           <input type="submit" />
         </form>
+        <Link to={`/notes/${note_id}`}>Go back to your note</Link>
         <Dictionary />
       </div>
     )

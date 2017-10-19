@@ -11,8 +11,6 @@ import { Redirect } from 'react-router-dom'
 class Homepage extends React.Component {
   state = {
     navigating: false,
-    latestArticle: {},
-    currentNote: {}
   }
 
   componentDidMount(){
