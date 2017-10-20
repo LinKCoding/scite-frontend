@@ -36,17 +36,10 @@ class Homepage extends React.Component {
     })
   }
 
-  handleRouting = () => {
-    if(this.checkForNote()){
-      const noteID = this.props.allNotes.filter(note => note.article_id === this.latestArticle().id)[0]
-      return (
-        <Link to={`/notes${noteID}`}>Edit Note</Link>
-      )
-    } else {
-      return(
-        <button onClick={this.handleClick}> Start on a new note! </button>
-      )
-    }
+  findNoteID = () => {
+    const latestArticle =  this.props.articles[this.props.articles.length-1]
+    const rightNote = this.props.allNotes.notes.filter(note => note.article_id === latestArticle.id)[0]
+    return rightNote.id
   }
 
   render(){
@@ -56,14 +49,13 @@ class Homepage extends React.Component {
     if(navigating && this.props.currentNote.note){
       return <Redirect to={`/notes/${this.props.currentNote.note.id}`} push={true}/>
     } else if(this.props.allNotes.fetchedNotes){
-      console.log("rendering b/c 2");
       console.log(this.checkForNote(), this.props.allNotes.notes);
       return (
         <div>
           <span> ARTICLE OF THE DAY </span>
           <ArticleWindow article={ articles.length !== 0 ? articles[articles.length - 1] : null}/>
           {this.checkForNote() ?
-            <Link to={`/notes/1`}>Edit Note</Link> :
+            <Link to={`/notes/${this.findNoteID()}`}>Edit Note</Link> :
             <button onClick={this.handleClick}> Start on a new note! </button>
           }
         </div>
