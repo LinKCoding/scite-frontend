@@ -9,6 +9,10 @@ export default function lexiconReducer(state={list: [], fetchingLexicon: false},
         fetchingLexicon: false,
         list: action.payload
       })
+    case "ADD_WORD":
+      return Object.assign({}, state, {
+        list: [...state.list, action.payload]
+      })
     default:
       return state
   }

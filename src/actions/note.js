@@ -73,32 +73,3 @@ export function createNote(article){
     })
   }
 }
-
-
-// actions for lexicon
-export function addWord(word){
-  return {
-    type: 'ADD_WORD',
-    payload: word
-  }
-}
-
-export function addingWord(word, noteID){
-  return function(dispatch){
-    fetch('http://localhost:3000/api/v1/lexicon/', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${localStorage.getItem('jwt')}`
-      },
-      body: JSON.stringify({
-        'word': word.word,
-        'definition': word.definition,
-        'note_id': noteID
-      })
-    }).then(res => res.json())
-    .then((lexicon) => {
-      dispatch(addWord(lexicon))
-    })
-  }
-}

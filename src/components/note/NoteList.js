@@ -13,6 +13,7 @@ class NoteList extends React.Component {
             <tr>
               <th>Date Started</th>
               <th>Article title</th>
+              <th>Delete</th>
             </tr>
             {this.props.notes.map((note)=>{ return <NoteDetail info={note} />})}
           </tbody>

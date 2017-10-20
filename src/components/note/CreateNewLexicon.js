@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { addingWord } from '../../actions/note'
+import { addingWord } from '../../actions/lexicon'
 
 class CreateNewLexicon extends React.Component {
   state = {
