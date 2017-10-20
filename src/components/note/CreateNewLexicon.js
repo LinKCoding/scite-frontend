@@ -18,6 +18,10 @@ class CreateNewLexicon extends React.Component {
     e.preventDefault()
     console.log(this.props);
     this.props.addingWord(this.state, this.props.noteID)
+    this.setState({
+      word: "",
+      definition: ""
+    })
   }
 
 

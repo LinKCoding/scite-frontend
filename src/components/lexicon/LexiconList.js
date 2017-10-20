@@ -14,10 +14,11 @@ const LexiconList = (props) => {
             <th>Word</th>
             <th>Definition</th>
             <th>Go to note</th>
+            <th>Remove from lexicon</th>
           </tr>
           {
-            props.lexicon.map( word => {
-              return <LexiconItem word={word}/>
+            props.lexicon.map( (word,index) => {
+              return <LexiconItem key={`lexicon-${index}`} word={word}/>
             })
           }
         </tbody>

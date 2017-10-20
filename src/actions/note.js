@@ -73,3 +73,18 @@ export function createNote(article){
     })
   }
 }
+
+export function deleteNote(noteID){
+  return function(dispatch){
+    fetch(`http://localhost:3000/api/v1/notes/${noteID}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+      }
+    }).then(res => res.json())
+    .then((notes) => {
+      dispatch(fetchedNotes(notes))
+    })
+  }
+}
