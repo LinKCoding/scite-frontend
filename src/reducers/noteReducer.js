@@ -1,4 +1,4 @@
-export default function noteReducer(state={ notes: [], currentNote: {}, fetchingNotes: false}, action){
+export default function noteReducer(state={ notes: [], currentNote: {}, fetchingNotes: false, fetchedNotes: false}, action){
   switch(action.type){
     case "CREATE_NOTE":
       return Object.assign({}, state, {
@@ -9,6 +9,7 @@ export default function noteReducer(state={ notes: [], currentNote: {}, fetching
     case "FETCHED_NOTES":
       return Object.assign({}, state, {
         fetchingNotes: false,
+        fetchedNotes: true,
         notes: action.payload
       })
     case "SETTING_NOTE":
