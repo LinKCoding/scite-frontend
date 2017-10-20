@@ -1,16 +1,91 @@
 import React, { Component } from 'react';
 import Editor from 'draft-js-plugins-editor';
 import { EditorState, convertToRaw, convertFromRaw } from 'draft-js';
-import createInlineToolbarPlugin from 'draft-js-inline-toolbar-plugin';
+import createInlineToolbarPlugin, { Separator } from 'draft-js-inline-toolbar-plugin';
+import {
+  ItalicButton,
+  BoldButton,
+  UnderlineButton,
+  CodeButton,
+  HeadlineOneButton,
+  HeadlineTwoButton,
+  HeadlineThreeButton,
+  UnorderedListButton,
+  OrderedListButton,
+  BlockquoteButton,
+  CodeBlockButton,
+} from 'draft-js-buttons';
+import createEmojiPlugin from 'draft-js-emoji-plugin';
 import editorStyles from './editorStyles.css';
 import debounce from 'lodash/debounce';
 import { connect } from 'react-redux'
 import { setNote } from '../../actions/note'
 
+class HeadlinesPicker extends Component {
+  componentDidMount() {
+    setTimeout(() => { window.addEventListener('click', this.onWindowClick); });
+  }
 
-const inlineToolbarPlugin = createInlineToolbarPlugin();
+  componentWillUnmount() {
+    window.removeEventListener('click', this.onWindowClick);
+  }
+
+  onWindowClick = () =>
+    // Call `onOverrideContent` again with `undefined`
+    // so the toolbar can show its regular content again.
+    this.props.onOverrideContent(undefined);
+
+  render() {
+    const buttons = [HeadlineOneButton, HeadlineTwoButton, HeadlineThreeButton];
+    return (
+      <div>
+        {buttons.map((Button, i) => // eslint-disable-next-line
+          <Button key={i} {...this.props} />
+        )}
+      </div>
+    );
+  }
+}
+
+class HeadlinesButton extends Component {
+  onClick = () =>
+    // A button can call `onOverrideContent` to replace the content
+    // of the toolbar. This can be useful for displaying sub
+    // menus or requesting additional information from the user.
+    this.props.onOverrideContent(HeadlinesPicker);
+
+  render() {
+    return (
+      <div className={editorStyles.headlineButtonWrapper}>
+        <button onClick={this.onClick} className={editorStyles.headlineButton}>
+          H
+        </button>
+      </div>
+    );
+  }
+}
+
+const inlineToolbarPlugin = createInlineToolbarPlugin({
+  structure: [
+    BoldButton,
+    ItalicButton,
+    UnderlineButton,
+    // CodeButton,
+    Separator,
+    // HeadlinesButton,
+    UnorderedListButton,
+    OrderedListButton,
+    BlockquoteButton,
+    // CodeBlockButton
+  ]
+});
+
+
+const emojiPlugin = createEmojiPlugin();
+// const inlineToolbarPlugin = createInlineToolbarPlugin();
 const { InlineToolbar } = inlineToolbarPlugin;
-const plugins = [inlineToolbarPlugin];
+const { EmojiSuggestions, EmojiSelect } = emojiPlugin;
+const plugins = [inlineToolbarPlugin, emojiPlugin];
 
 class PlainEditor extends Component {
   constructor(props) {
@@ -18,38 +93,12 @@ class PlainEditor extends Component {
       this.state = {
         editorState: EditorState.createWithContent(convertFromRaw(JSON.parse(this.props.currentNote.note.content)))
       }
-
-      // const content = window.localStorage.getItem('content');
-      // const content = this.props.currentNote.note.content
-      // console.log(this.props);
-      // if(this.props.currentNote.note) {
-      //   console.log("content loaded");
-      //   this.state.seditorState = EditorState.createWithContent(convertFromRaw(JSON.parse(this.props.currentNote.note.content)));
-      // } else {
-      //   console.log("content not loaded");
-      //   this.state.editorState = EditorState.createEmpty();
-      // }
     }
 
   componentDidMount(){
     this.props.setNote(this.props.noteID)
-    // this.setState({
-    //   editorState: EditorState.createWithContent(convertFromRaw(JSON.parse(this.props.currentNote.note.content)))
-    // })
   }
 
-  // componentWillUpdate(){
-  //   if(this.props.currentNote.note) {
-  //     const content = this.props.currentNote.note.content
-  //     console.log("content loaded");
-  //     console.log(this.props.currentNote.note.content)
-  //     // debugger
-  //     this.state.editorState = EditorState.createWithContent(convertFromRaw(JSON.parse(this.props.currentNote.note.content)))
-  //   } else {
-  //     console.log("content not loaded");
-  //     // this.state.editorState = EditorState.createEmpty();
-  //   }
-  // }
 
   saveContent = debounce((content) => {
     fetch(`http://localhost:3000/api/v1/notes/${this.props.noteID}`, {
@@ -66,8 +115,6 @@ class PlainEditor extends Component {
 
   onChange = (editorState) => {
       const contentState = editorState.getCurrentContent();
-      // const checkState = convertToRaw(contentState)
-      // debugger
       this.saveContent(contentState);
       this.setState({
         editorState,
@@ -88,6 +135,8 @@ class PlainEditor extends Component {
           ref={(element) => { this.editor = element; }}
         />
         <InlineToolbar />
+        <EmojiSuggestions />
+
       </div>
     );
   }
