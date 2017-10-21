@@ -1,6 +1,5 @@
 import React from 'react'
 import ArticleWindow  from './ArticleWindow'
-import CreateNewNote from './CreateNewNote'
 import { connect } from 'react-redux'
 import { fetchArticlesAndSetLatest } from '../actions/article'
 import { createNote, fetchNotes } from '../actions/note'
@@ -39,6 +38,7 @@ class Homepage extends React.Component {
   findNoteID = () => {
     const latestArticle =  this.props.articles[this.props.articles.length-1]
     const rightNote = this.props.allNotes.notes.filter(note => note.article_id === latestArticle.id)[0]
+
     return rightNote.id
   }
 

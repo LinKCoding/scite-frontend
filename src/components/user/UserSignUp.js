@@ -11,20 +11,10 @@ class UserSignUp extends React.Component {
     confirmPassword: ""
   }
 
-  changeFirstName = (event) => {
-    this.setState({firstName: event.target.value})
-  }
-  changeLastName = (event) => {
-    this.setState({lastName: event.target.value})
-  }
-  changeEmail = (event) => {
-    this.setState({email: event.target.value})
-  }
-  changePassword = (event) => {
-    this.setState({password: event.target.value})
-  }
-  changeConfirmationPassword = (event) => {
-    this.setState({confirmPassword: event.target.value})
+  handleChange = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value
+    })
   }
 
   checkPasswords = () => {
@@ -57,19 +47,19 @@ class UserSignUp extends React.Component {
         <label className="label">
           Last Name:
         </label>
-          <input type="text" name="lastName" onChange={this.changeLastName} value={this.state.lastName}/> <br/>
+          <input type="text" name="lastName" onChange={this.handleChange} value={this.state.lastName}/> <br/>
         <label className="label">
           Email:
         </label>
-          <input type="text" name="email" onChange={this.changeEmail} value={this.state.email}/> <br/>
+          <input type="text" name="email" onChange={this.handleChange} value={this.state.email}/> <br/>
         <label className="label">
           Password:
         </label>
-          <input type="password" name="password" onChange={this.changePassword} value={this.state.password}/> <br/>
+          <input type="password" name="password" onChange={this.handleChange} value={this.state.password}/> <br/>
         <label className="label">
           Confirm Password:
         </label>
-          <input type="password" name="passwordConfirmation" onChange={this.changeConfirmationPassword} value={this.state.confirmPassword}/> <br/>
+          <input type="password" name="passwordConfirmation" onChange={this.handleChange} value={this.state.confirmPassword}/> <br/>
           <input type="submit" value="Submit" />
         </form>
       </div>

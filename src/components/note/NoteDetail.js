@@ -6,8 +6,8 @@ import { deleteNote } from '../../actions/note'
 class NoteDetail extends React.Component {
   handleClick = () => {
     const response = window.confirm("You're about to delete this from your notes, are you sure?")
-    {response ?
-    this.props.deleteNote(this.props.info.id) : null }
+    response ?
+    this.props.deleteNote(this.props.info.id) : null 
   }
 
   render(){

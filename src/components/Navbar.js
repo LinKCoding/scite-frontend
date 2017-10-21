@@ -9,7 +9,7 @@ class Navbar extends React.Component {
     localStorage.removeItem('jwt')
     this.props.logOut()
   }
-  render() {
+  render(){
     return(
       <div>
         <NavLink to="/"> Homepage </NavLink>
@@ -23,6 +23,27 @@ class Navbar extends React.Component {
     )
   }
 }
+//
+// render() {
+//   if(localStorage.getItem('jwt')){
+//     return(
+//       <div>
+//         <NavLink to="/"> Homepage </NavLink>
+//         <NavLink to="/articles"> Articles </NavLink>
+//         <NavLink to="/lexicon"> Lexicon </NavLink>
+//         <NavLink to="/notes"> Notes </NavLink>
+//         <NavLink to="/" onClick={this.logOut}> Logout </NavLink>
+//       </div>
+//     )
+//   } else {
+//     return(
+//       <div>
+//         <NavLink to="/signup"> Signup </NavLink>
+//         <NavLink to="/login"> Login </NavLink>
+//       </div>
+//     )
+//   }
+// }
 
 function mapDispatchToProps(dispatch) {
   return {

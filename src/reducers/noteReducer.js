@@ -10,7 +10,8 @@ export default function noteReducer(state={ notes: [], currentNote: {}, fetching
       return Object.assign({}, state, {
         fetchingNotes: false,
         fetchedNotes: true,
-        notes: action.payload
+        notes: action.payload,
+        currentNote: {}
       })
     case "SETTING_NOTE":
       return Object.assign({}, state, {

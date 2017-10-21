@@ -6,8 +6,7 @@ import { deleteLexicon } from '../../actions/lexicon'
 class LexiconItem extends React.Component{
   handleClick = () => {
     const response = window.confirm("You're about to delete this from your lexicon, are you sure?")
-    {response ?
-    this.props.deleteLexicon(this.props.word.id) : null }
+    response ? this.props.deleteLexicon(this.props.word.id) : null 
   }
 
   render(){

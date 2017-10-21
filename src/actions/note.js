@@ -36,6 +36,7 @@ export function settingNote(note){
 }
 
 export function setNote(noteID){
+  // debugger
   return function(dispatch){
     dispatch(fetchingNotes())
     fetch(`http://localhost:3000/api/v1/notes/${noteID}`, {

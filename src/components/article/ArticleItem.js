@@ -29,7 +29,7 @@ class ArticleItem extends React.Component {
       return(
         <tr>
           <td>{formated_date}</td>
-          <td><img src={thumbnail}/></td>
+          <td><img src={thumbnail} alt={name}/></td>
           <td>{name}</td>
           <td>{checkForNote ?
             <Link to={`notes/${selectedNote.id}`}>Edit Note</Link> :

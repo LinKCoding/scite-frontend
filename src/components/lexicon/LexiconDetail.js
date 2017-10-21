@@ -23,9 +23,8 @@ class LexiconDetail extends React.Component{
   }
 
   render(){
-    const { word, definition, note_id } = this.props.word
-    console.log(this.props);
-    console.log(this.state);
+    const { word, note_id } = this.props.word
+
     return(
       <div>
         <h2> Editing  "{word}"</h2>

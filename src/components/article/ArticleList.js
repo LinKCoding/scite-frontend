@@ -1,6 +1,5 @@
 import React from 'react'
 import ArticleItem from './ArticleItem'
-import { Link } from 'react-router-dom'
 
 class ArticleList extends React.Component{
   render(){
@@ -14,7 +13,7 @@ class ArticleList extends React.Component{
               <th>Title</th>
               <th>Note</th>
             </tr>
-            {this.props.articles.map((article)=>{ return <ArticleItem info={article} noteList={this.props.notes}/>})}
+            {this.props.articles.map((article, index)=>{ return <ArticleItem info={article} key={`article-${index}`} noteList={this.props.notes}/>})}
           </tbody>
         </table>
       )

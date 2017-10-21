@@ -12,8 +12,16 @@ class UserLogin extends React.Component {
     this.setState({email: event.target.value})
   }
   changePassword = (event) => {
-    this.setState({password: event.target.value})
+    this.setState({
+      password: event.target.value})
   }
+
+  handleChange = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value
+    })
+  }
+
   handleSubmit = (event) => {
     event.preventDefault()
     this.props.login(this.state)
@@ -25,11 +33,11 @@ class UserLogin extends React.Component {
       <label className="label">
       Email:
       </label>
-      <input className="inputField" type="text" name="email" onChange={this.changeEmail} value={this.state.email}/> <br/>
+      <input className="inputField" type="text" name="email" onChange={this.handleChange} value={this.state.email}/> <br/>
       <label className="label">
       Password:
       </label>
-      <input className="inputField" type="password" name="password" onChange={this.changePassword} value={this.state.password}/> <br/>
+      <input className="inputField" type="password" name="password" onChange={this.handleChange} value={this.state.password}/> <br/>
       <input className="fsSubmitButton" type="submit" value="Submit" />
       </form>)
   }

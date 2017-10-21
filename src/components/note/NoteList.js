@@ -1,6 +1,5 @@
 import React from 'react'
 import NoteDetail from './NoteDetail'
-import { Link } from 'react-router-dom'
 
 class NoteList extends React.Component {
   render() {
