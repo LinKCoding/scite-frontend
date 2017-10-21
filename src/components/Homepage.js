@@ -21,7 +21,6 @@ class Homepage extends React.Component {
 
   handleClick = () => {
     const latestArticle =  this.props.articles[this.props.articles.length-1]
-    console.log(this.props);
     this.props.createNote(latestArticle)
     this.setState({
       navigating: true
@@ -43,13 +42,13 @@ class Homepage extends React.Component {
   }
 
   render(){
-    console.log(this.props.allNotes);
+
     const { articles } = this.props
     const { navigating } = this.state
     if(navigating && this.props.currentNote.note){
       return <Redirect to={`/notes/${this.props.currentNote.note.id}`} push={true}/>
-    } else if(this.props.allNotes.fetchedNotes){
-      console.log(this.checkForNote(), this.props.allNotes.notes);
+    } else if(this.props.allNotes.fetchedNotes && this.props.articles[0]){
+
       return (
         <div>
           <span> ARTICLE OF THE DAY </span>

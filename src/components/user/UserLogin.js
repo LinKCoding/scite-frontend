@@ -1,19 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import { login } from '../../actions/user'
+import { Redirect } from 'react-router-dom'
 
 class UserLogin extends React.Component {
   state = {
     email: "",
-    password: ""
-  }
-
-  changeEmail = (event) => {
-    this.setState({email: event.target.value})
-  }
-  changePassword = (event) => {
-    this.setState({
-      password: event.target.value})
+    password: "",
+    navigating: false
   }
 
   handleChange = (e) => {
@@ -24,22 +18,34 @@ class UserLogin extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
-    this.props.login(this.state)
+    const { email, password } = this.state
+    this.props.login({email, password})
+    this.setState({
+      navigating: true
+    })
     //check route and redirect if log in went through, i.e. loggedIn === "true"
   }
 
   render(){
-    return (<form className="form" onSubmit={this.handleSubmit}>
-      <label className="label">
-      Email:
-      </label>
-      <input className="inputField" type="text" name="email" onChange={this.handleChange} value={this.state.email}/> <br/>
-      <label className="label">
-      Password:
-      </label>
-      <input className="inputField" type="password" name="password" onChange={this.handleChange} value={this.state.password}/> <br/>
-      <input className="fsSubmitButton" type="submit" value="Submit" />
-      </form>)
+    if(this.state.navigating){
+      console.log(this.state)
+      console.log(this.props.location.pathname);
+      return <Redirect to="/articles" />
+    } else {
+      return (
+        <form className="form" onSubmit={this.handleSubmit}>
+          <label className="label">
+            Email:
+          </label>
+          <input className="inputField" type="text" name="email" onChange={this.handleChange} value={this.state.email}/> <br/>
+          <label className="label">
+            Password:
+          </label>
+          <input className="inputField" type="password" name="password" onChange={this.handleChange} value={this.state.password}/> <br/>
+          <input className="fsSubmitButton" type="submit" value="Submit" />
+        </form>
+      )
+    }
   }
 }
 
