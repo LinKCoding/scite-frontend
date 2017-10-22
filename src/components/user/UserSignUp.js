@@ -8,7 +8,7 @@ class UserSignUp extends React.Component {
     lastName: "",
     email: "",
     password: "",
-    confirmPassword: ""
+    passwordConfirmation: ""
   }
 
   handleChange = (e) => {
@@ -18,7 +18,7 @@ class UserSignUp extends React.Component {
   }
 
   checkPasswords = () => {
-    return (this.state.password === this.state.confirmPassword)
+    return (this.state.password === this.state.passwordConfirmation)
   }
 
   handleSubmit = (e) => {
@@ -29,7 +29,7 @@ class UserSignUp extends React.Component {
       alert("your passwords don't match")
       this.setState({
         password: "",
-        confirmPassword: ""
+        passwordConfirmation: ""
       })
     }
   }
@@ -43,7 +43,7 @@ class UserSignUp extends React.Component {
         <label className="label">
           First Name:
         </label>
-          <input type="text" name="firstName" onChange={this.changeFirstName} value={this.state.firstName}/> <br/>
+          <input type="text" name="firstName" onChange={this.handleChange} value={this.state.firstName}/> <br/>
         <label className="label">
           Last Name:
         </label>
@@ -59,7 +59,7 @@ class UserSignUp extends React.Component {
         <label className="label">
           Confirm Password:
         </label>
-          <input type="password" name="passwordConfirmation" onChange={this.handleChange} value={this.state.confirmPassword}/> <br/>
+          <input type="password" name="passwordConfirmation" onChange={this.handleChange} value={this.state.passwordConfirmation}/> <br/>
           <input type="submit" value="Submit" />
         </form>
       </div>
