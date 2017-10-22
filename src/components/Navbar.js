@@ -12,9 +12,10 @@ class Navbar extends React.Component {
     e.preventDefault()
     localStorage.removeItem('jwt')
     this.props.logOut()
-    this.setState({
-      navigating: true
-    })
+    // this.setState({
+    //   navigating: true
+    // })
+    this.props.history.push("/login")
   }
 
   render() {
