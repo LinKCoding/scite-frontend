@@ -1,9 +1,11 @@
 import React from 'react'
 import ArticleWindow  from './ArticleWindow'
+import './Homepage.css'
 import { connect } from 'react-redux'
 import { fetchArticlesAndSetLatest } from '../actions/article'
 import { createNote, fetchNotes } from '../actions/note'
 import { Link, Redirect } from 'react-router-dom'
+import { Grid } from 'semantic-ui-react'
 
 
 
@@ -50,14 +52,30 @@ class Homepage extends React.Component {
     } else if(this.props.allNotes.fetchedNotes && this.props.articles[0]){
 
       return (
-        <div>
-          <span> ARTICLE OF THE DAY </span>
-          <ArticleWindow article={ articles.length !== 0 ? articles[articles.length - 1] : null}/>
-          {this.checkForNote() ?
-            <Link to={`/notes/${this.findNoteID()}`}>Edit Note</Link> :
-            <button onClick={this.handleClick}> Start on a new note! </button>
-          }
-        </div>
+        <Grid centered columns={2}>
+          <Grid.Row centered columns={2} >
+            <Grid.Column>
+              <span> ARTICLE OF THE DAY </span>
+            </Grid.Column>
+          </Grid.Row>
+
+          <Grid.Row>
+            <Grid.Column>
+              <ArticleWindow  article={ articles.length !== 0 ? articles[articles.length - 1] : null}/>
+            </Grid.Column>
+          </Grid.Row>
+
+          <Grid.Row>
+            {this.checkForNote() ?
+              <Grid.Column>
+                <Link to={`/notes/${this.findNoteID()}`}>Edit Note</Link>
+              </Grid.Column> :
+              <Grid.Column>
+                <button onClick={this.handleClick}> Start on a new note! </button>
+              </Grid.Column>
+            }
+          </Grid.Row>
+        </Grid>
       )
     } else {
       console.log("logging last");

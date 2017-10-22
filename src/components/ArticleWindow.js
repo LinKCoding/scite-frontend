@@ -6,7 +6,7 @@ class ArticleWindow extends React.Component {
 
     if(this.props.article) {
     return(
-      <object data={this.props.article.url} >Article goes here</object>
+      <object height="600vh" width="800vh" data={this.props.article.url} >Article goes here</object>
     )} else {
       return null
     }

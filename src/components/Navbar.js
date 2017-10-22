@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { logOut } from '../actions/user'
 import { NavLink, Redirect } from 'react-router-dom'
+import { Menu } from 'semantic-ui-react'
 
 class Navbar extends React.Component {
   state = {
@@ -23,13 +24,24 @@ class Navbar extends React.Component {
       return <Redirect exact to='/' push={true}/>
     } else if(localStorage.getItem('jwt')){
       return(
-        <div>
-          <NavLink to="/"> Homepage </NavLink>
-          <NavLink to="/articles"> Articles </NavLink>
-          <NavLink to="/lexicon"> Lexicon </NavLink>
-          <NavLink to="/notes"> Notes </NavLink>
-          <NavLink to="/" onClick={this.logOut}> Logout </NavLink>
-        </div>
+        <Menu>
+          <Menu.Item >
+            <NavLink to="/"> Homepage </NavLink>
+          </Menu.Item>
+          <Menu.Item>
+            <NavLink to="/articles"> Articles </NavLink>
+          </Menu.Item>
+          <Menu.Item>
+            <NavLink to="/lexicon"> Lexicon </NavLink>
+          </Menu.Item>
+          <Menu.Item>
+            <NavLink to="/notes"> Notes </NavLink>
+          </Menu.Item>
+          <Menu.Item position="right">
+            <NavLink to="/" onClick={this.logOut}> Logout </NavLink>
+          </Menu.Item>
+
+        </Menu>
       )
     } else {
       return(
