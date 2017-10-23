@@ -3,7 +3,7 @@ import ArticleList from './ArticleList'
 import { connect } from 'react-redux'
 import { fetchArticles } from '../../actions/article'
 import { fetchNotes } from '../../actions/note'
-import { Icon, Table } from 'semantic-ui-react'
+import { Grid } from 'semantic-ui-react'
 
 
 class ArticleContainer extends React.Component {
@@ -14,17 +14,15 @@ class ArticleContainer extends React.Component {
   render(){
     if(this.props.articles.length > 0){
       return(
-        <Table celled padded>
-          <Table.Header>
-            <Table.Row>
-              <Table.HeaderCell colSpan='3'>Date</Table.HeaderCell>
-              <Table.HeaderCell colSpan='3'>Image</Table.HeaderCell>
-              <Table.HeaderCell colSpan='3'>Title</Table.HeaderCell>
-              <Table.HeaderCell colSpan='3'>Note</Table.HeaderCell>
-            </Table.Row>
-          </Table.Header>
-          <ArticleList articles={this.props.articles} notes={this.props.notes}/>
-        </Table>
+        <Grid>
+          <Grid.Column width={1}>
+          </Grid.Column>
+          <Grid.Column width={14}>
+            <ArticleList articles={this.props.articles} notes={this.props.notes}/>
+          </Grid.Column>
+          <Grid.Column width={1}>
+          </Grid.Column>
+        </Grid>
       )
     } else {
       return (

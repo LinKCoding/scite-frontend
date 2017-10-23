@@ -2,7 +2,7 @@ import React from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { createNote } from '../../actions/note'
-import { Table } from 'semantic-ui-react'
+import { Table, Image } from 'semantic-ui-react'
 
 class ArticleItem extends React.Component {
   state = {
