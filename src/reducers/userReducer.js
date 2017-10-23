@@ -1,4 +1,4 @@
-export default function userReducer(state = { loggedIn: false, fetchingAccount: false, user_id:"" }, action) {
+export default function userReducer(state = { loggedIn: false, fetchingAccount: false, user_id:"", errors: []}, action) {
   switch(action.type) {
     case "SET_USER":
       return Object.assign({}, state, {
@@ -19,20 +19,10 @@ export default function userReducer(state = { loggedIn: false, fetchingAccount: 
         loggedIn: true,
         user_id: action.payload
       })
-    // case "LOG_OUT":
-    //   return Object.assign({}, state, {
-    //     loggedIn: false,
-    //     user_id: "",
-    //     article: {
-    //       articles: [],
-    //       fetching_articles: false
-    //     },
-    //     note: {
-    //       notes:[],
-    //       currentNote: {},
-    //       fetchingNotes: false
-    //     }
-    //    })
+    case "USER_ERROR":
+      return Object.assign({}, state, {
+        errors: [...state.errors, action.payload]
+      })
     default:
       return state
   }

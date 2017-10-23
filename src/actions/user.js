@@ -1,8 +1,14 @@
-
 export function loggedIn(user_id){
-  return{
+  return {
     type: "LOGGED_IN",
     payload: user_id
+  }
+}
+
+export function loginError(error){
+  return{
+    type: "USER_ERROR",
+    payload: error
   }
 }
 
@@ -40,6 +46,7 @@ export function createdAccount(){
 }
 
 export function login(user){
+  console.log(user)
   return function(dispatch){
     dispatch(fetchingAccount())
     fetch("http://localhost:3000/api/v1/login", {
@@ -51,20 +58,30 @@ export function login(user){
         email: user.email,
         password: user.password
       })
-    }).then((res) => res.json())
+    })
+    .then(res => {
+      if(!res.ok) {
+        throw new Error('Incorrect username or password')
+      }
+      return res
+    })
+    .then((res) => res.json())
     .then(userInfo => {
+
       localStorage.setItem('jwt', userInfo.jwt)
       dispatch(loggedIn(userInfo.user_id))
-      // return userInfo
-    }).then(function(){
-      window.location = "/"
+    })
+    .then(() => {
+      user.history.push("/")
+    })
+    .catch(err => {
+      console.log("hitting err")
+      console.log(err);
+      dispatch(loginError(err))
     })
   }
 }
 
-// .then(function(){
-//   window.location = "/"
-// })
 
 export function signUp(user){
   return function(dispatch){

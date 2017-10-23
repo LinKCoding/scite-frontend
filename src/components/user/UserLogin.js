@@ -19,50 +19,45 @@ class UserLogin extends React.Component {
   handleSubmit = (event) => {
     event.preventDefault()
     const { email, password } = this.state
-    this.props.login({email, password})
-    // .then(userInfo => this.setState({ email: "", password: ""}))
-    // this.setState({
-    //   email: "",
-    //   password: "",
-    //   navigating: true
-    // })
-    //check route and redirect if log in went through, i.e. loggedIn === "true"
-    // this.props.history.push("/notes")
+    const user = {email, password, history: this.props.history};
+    this.props.login(user)
   }
 
-  //
-  // componentWillUpdate(prevProps){
-  //   if(this.props.loggedIn){
-  //     this.setState({
-  //       navigating: true
-  //     })
-  //   }
-  // }
+  loginForm = () => {
+    return(
+      <form className="form" onSubmit={this.handleSubmit}>
+        <label className="label">
+          Email:
+        </label>
+        <input className="inputField" type="text" name="email" onChange={this.handleChange} value={this.state.email}/> <br/>
+        <label className="label">
+          Password:
+        </label>
+        <input className="inputField" type="password" name="password" onChange={this.handleChange} value={this.state.password}/> <br/>
+        <input className="fsSubmitButton" type="submit" value="Submit" />
+      </form>
+    )
+  }
+
 
   render(){
-    console.log(this.state.navigating, this.props, localStorage.getItem('jwt'));
-    if(this.state.navigating && this.props.loggedIn){
-      console.log("got jwt");
-      return( <Redirect to="/" /> )
-    } else {
-      console.log("rendering form");
-      return (
-        <div>
-        <form className="form" onSubmit={this.handleSubmit}>
-          <label className="label">
-            Email:
-          </label>
-          <input className="inputField" type="text" name="email" onChange={this.handleChange} value={this.state.email}/> <br/>
-          <label className="label">
-            Password:
-          </label>
-          <input className="inputField" type="password" name="password" onChange={this.handleChange} value={this.state.password}/> <br/>
-          <input className="fsSubmitButton" type="submit" value="Submit" />
-        </form>
-
-        </div>
-      )
-    }
+      if(this.props.errors.length === 0){
+        return (
+          <div>
+            {this.loginForm()}
+          </div>
+        )
+      } else {
+        console.log("hitting this");
+        console.log(this.props);
+        console.log(this.props.errors[0])
+        return (
+          <div>
+            {this.loginForm()}
+            <div>Incorrect Username or password</div>
+          </div>
+        )
+      }
   }
 }
 
@@ -77,7 +72,8 @@ function mapDispatchToProps(dispatch){
 function mapStateToProps(state){
   return {
     fetchingAccount: state.user.fetchingAccount,
-    loggedIn: state.user.loggedIn
+    loggedIn: state.user.loggedIn,
+    errors: state.user.errors
   }
 }
 

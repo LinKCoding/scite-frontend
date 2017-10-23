@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import UserSignUp from './components/user/UserSignUp'
 import UserLogin from './components/user/UserLogin'
@@ -8,6 +8,7 @@ import Authorize from './Authorize'
 import ArticleContainer from './components/article/ArticleContainer'
 import LexiconContainer from './components/lexicon/LexiconContainer'
 import NoteContainer from './components/note/NoteContainer'
+import NotFound from './NotFound'
 
 class App extends Component {
   render() {
@@ -21,13 +22,16 @@ class App extends Component {
     return (
       <div>
         <Route path="/" component={Navbar}/>
-        <Route path="/articles" render={(props) => <AuthArticleContainer {...props}/>}/>
-        <Route path="/lexicon" render={(props) => <AuthLexiconContainer {...props}/>}/>
-        <Route path="/notes" render={(props) => <AuthNoteContainer {...props}/>}/>
+        <Switch>
+          <Route path="/articles" render={(props) => <AuthArticleContainer {...props}/>}/>
+          <Route path="/lexicon" render={(props) => <AuthLexiconContainer {...props}/>}/>
+          <Route path="/notes" render={(props) => <AuthNoteContainer {...props}/>}/>
 
-        <Route exact path="/signup" render={(props) => <AuthSignUp {...props}/>}/>
-        <Route exact path="/login" render={(props) => <AuthLogin {...props}/>}/>
-        <Route exact path="/" render={(props) => <AuthHomepage {...props}/>}/>
+          <Route exact path="/signup" render={(props) => <AuthSignUp {...props}/>}/>
+          <Route exact path="/login" render={(props) => <AuthLogin {...props}/>}/>
+          <Route exact path="/" render={(props) => <AuthHomepage {...props}/>}/>
+          <Route component={NotFound} />
+        </Switch>
       </div>
     );
   }
