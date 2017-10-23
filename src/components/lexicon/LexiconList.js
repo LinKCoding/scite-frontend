@@ -1,5 +1,6 @@
 import React from 'react'
 import LexiconItem from './LexiconItem'
+import { Table } from 'semantic-ui-react'
 
 const LexiconList = (props) => {
   // debugger
@@ -9,21 +10,23 @@ const LexiconList = (props) => {
     )
   } else {
     return(
-      <table >
-        <tbody>
-          <tr>
-            <th>Word</th>
-            <th>Definition</th>
-            <th>Go to note</th>
-            <th>Remove from lexicon</th>
-          </tr>
+      <Table celled padded>
+        <Table.Header>
+          <Table.Row>
+            <Table.HeaderCell>Word</Table.HeaderCell>
+            <Table.HeaderCell>Definition</Table.HeaderCell>
+            <Table.HeaderCell>Go to note</Table.HeaderCell>
+            <Table.HeaderCell>Remove from lexicon</Table.HeaderCell>
+          </Table.Row>
+        </Table.Header>
+        <Table.Body>
           {
             props.lexicon.list.map( (word,index) => {
               return <LexiconItem key={`lexicon-${index}`} word={word}/>
             })
           }
-        </tbody>
-      </table>
+        </Table.Body>
+      </Table>
     )
   }
 }
