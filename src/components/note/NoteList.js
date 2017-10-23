@@ -1,5 +1,6 @@
 import React from 'react'
 import NoteDetail from './NoteDetail'
+import { Table } from 'semantic-ui-react'
 
 class NoteList extends React.Component {
   render() {
@@ -7,16 +8,18 @@ class NoteList extends React.Component {
     if(this.props.notes.length !== 0){
 
       return(
-        <table>
-          <tbody>
-            <tr>
-              <th>Date Started</th>
-              <th>Article title</th>
-              <th>Delete</th>
-            </tr>
+        <Table celled padded>
+          <Table.Header>
+            <Table.Row>
+              <Table.HeaderCell>Date Started</Table.HeaderCell>
+              <Table.HeaderCell>Article title</Table.HeaderCell>
+              <Table.HeaderCell>Delete</Table.HeaderCell>
+            </Table.Row>
+          </Table.Header>
+          <Table.Body>
             {this.props.notes.map((note)=>{ return <NoteDetail info={note} />})}
-          </tbody>
-        </table>
+          </Table.Body>
+        </Table>
 
 
       )

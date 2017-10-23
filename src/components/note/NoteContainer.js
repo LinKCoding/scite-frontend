@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { fetchedLexicon } from '../../actions/lexicon'
 import { fetchNotes } from '../../actions/note'
 import { Route, Link } from 'react-router-dom'
+import { Grid } from 'semantic-ui-react'
 
 class NoteContainer extends React.Component {
   componentDidMount(){
@@ -14,7 +15,6 @@ class NoteContainer extends React.Component {
 
   render(){
     const { notes, lexicon } = this.props
-    console.log(this.props);
     if(notes.fetchedNotes) {
       if(notes.notes.length === 0) {
         return(
@@ -22,14 +22,21 @@ class NoteContainer extends React.Component {
         )
       } else {
         return(
-          <div>
-            <Route exact path="/notes" render={(props)=> <NoteList notes={notes.notes} lexicon={lexicon} routerProps={props} /> } />
+          <Grid>
+            <Grid.Column width={1}>
+            </Grid.Column>
+            <Grid.Column width={14}>
+              <Route exact path="/notes" render={(props)=> <NoteList notes={notes.notes} lexicon={lexicon} routerProps={props} /> } />
+            </Grid.Column>
+            <Grid.Column width={1}>
+            </Grid.Column>
+
             <Route path="/notes/:id" render={(props)=> {
                 const id = props.match.params.id
 
                 return <NoteItem routerProps={props} lexicon={lexicon} noteID={id}/>  }} />
-              </div>
-            )
+          </Grid>
+        )
       }
     } else {
       return <h3>loading</h3>
