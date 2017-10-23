@@ -19,7 +19,7 @@ class App extends Component {
     const AuthLogin = Authorize(UserLogin)
     const AuthSignUp = Authorize(UserSignUp)
     return (
-      <div className="App">
+      <div>
         <Route path="/" component={Navbar}/>
         <Route path="/articles" render={(props) => <AuthArticleContainer {...props}/>}/>
         <Route path="/lexicon" render={(props) => <AuthLexiconContainer {...props}/>}/>

@@ -39,7 +39,7 @@ class UserLogin extends React.Component {
 
   render(){
     console.log(this.state.navigating, this.props, localStorage.getItem('jwt'));
-    if(this.state.navigating){
+    if(this.state.navigating && this.props.loggedIn){
       console.log("got jwt");
       return( <Redirect to="/" /> )
     } else if(this.props.fetchingAccount) {

@@ -23,7 +23,7 @@ class LexiconContainer extends React.Component {
             <Route exact path='/lexicon' render={(props) => <LexiconList routerProps={props} lexicon={lexicon} /> } />
             <Route path='/lexicon/:id' render={(props)=> {
                 const id = props.match.params.id
-                const word = lexicon.filter((word) => {
+                const word = lexicon.list.filter((word) => {
                   return word.id === parseInt(id, 10)
                 })[0]
 
@@ -32,8 +32,6 @@ class LexiconContainer extends React.Component {
         )
       }
     } else {
-      console.log(this.props);
-      console.log("second");
       return (
         <h3> loading </h3>
       )

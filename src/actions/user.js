@@ -55,11 +55,13 @@ export function login(user){
     .then(userInfo => {
       localStorage.setItem('jwt', userInfo.jwt)
       dispatch(loggedIn(userInfo.user_id))
-    }).then(function(){
-      window.location = "/"
     })
   }
 }
+
+// .then(function(){
+//   window.location = "/"
+// })
 
 export function signUp(user){
   return function(dispatch){

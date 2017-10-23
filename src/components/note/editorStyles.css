@@ -86,6 +86,7 @@
 
 .editor :global(.public-DraftEditor-content) {
   min-height: 140px;
+  min-width: 100vh;
 }
 
 .headlineButtonWrapper {

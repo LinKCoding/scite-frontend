@@ -2,7 +2,8 @@ import React from 'react'
 import LexiconItem from './LexiconItem'
 
 const LexiconList = (props) => {
-  if (props.lexicon.error) {
+  // debugger
+  if (props.lexicon.list.error) {
     return(
       <h1>Looks like you haven't made any notes yet, start on an article?</h1>
     )
@@ -17,7 +18,7 @@ const LexiconList = (props) => {
             <th>Remove from lexicon</th>
           </tr>
           {
-            props.lexicon.map( (word,index) => {
+            props.lexicon.list.map( (word,index) => {
               return <LexiconItem key={`lexicon-${index}`} word={word}/>
             })
           }

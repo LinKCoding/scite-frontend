@@ -2,6 +2,7 @@ import React from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { createNote } from '../../actions/note'
+import { Table } from 'semantic-ui-react'
 
 class ArticleItem extends React.Component {
   state = {
@@ -27,16 +28,16 @@ class ArticleItem extends React.Component {
       return <Redirect to={`/notes/${this.props.note.note.id}`} push={true}/>
     } else {
       return(
-        <tr>
-          <td>{formated_date}</td>
-          <td><img src={thumbnail} alt={name}/></td>
-          <td>{name}</td>
-          <td>{checkForNote ?
+        <Table.Row>
+          <Table.Cell>{formated_date}</Table.Cell>
+          <Table.Cell><img src={thumbnail} alt={name}/></Table.Cell>
+          <Table.Cell>{name}</Table.Cell>
+          <Table.Cell>{checkForNote ?
             <Link to={`notes/${selectedNote.id}`}>Edit Note</Link> :
             <button onClick={this.handleClick}>Start a note!</button>
           }
-          </td>
-        </tr>
+          </Table.Cell>
+        </Table.Row>
       )
     }
   }
