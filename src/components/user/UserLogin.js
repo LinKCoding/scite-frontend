@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import { login } from '../../actions/user'
-import { Redirect } from 'react-router-dom'
+import { Redirect, withRouter } from 'react-router-dom'
 
 class UserLogin extends React.Component {
   state = {
@@ -20,6 +20,7 @@ class UserLogin extends React.Component {
     event.preventDefault()
     const { email, password } = this.state
     this.props.login({email, password})
+    // .then(userInfo => this.setState({ email: "", password: ""}))
     // this.setState({
     //   email: "",
     //   password: "",
@@ -28,6 +29,7 @@ class UserLogin extends React.Component {
     //check route and redirect if log in went through, i.e. loggedIn === "true"
     // this.props.history.push("/notes")
   }
+
   //
   // componentWillUpdate(prevProps){
   //   if(this.props.loggedIn){
@@ -42,10 +44,6 @@ class UserLogin extends React.Component {
     if(this.state.navigating && this.props.loggedIn){
       console.log("got jwt");
       return( <Redirect to="/" /> )
-    } else if(this.props.fetchingAccount) {
-      console.log('hitting fetching');
-
-      <Redirect to="/" />
     } else {
       console.log("rendering form");
       return (
@@ -61,6 +59,7 @@ class UserLogin extends React.Component {
           <input className="inputField" type="password" name="password" onChange={this.handleChange} value={this.state.password}/> <br/>
           <input className="fsSubmitButton" type="submit" value="Submit" />
         </form>
+
         </div>
       )
     }
@@ -82,4 +81,4 @@ function mapStateToProps(state){
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserLogin)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(UserLogin))

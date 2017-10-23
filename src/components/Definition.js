@@ -5,8 +5,7 @@ class Definition extends React.Component{
     const {type, defenition} = this.props.definition
     return(
       <li>
-        <p>{type}</p>
-        <p>{defenition}</p>
+        <p>{type} - {defenition}</p>
       </li>
     )
   }
