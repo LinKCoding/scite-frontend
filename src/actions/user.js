@@ -6,9 +6,15 @@ export function loggedIn(user_id){
 }
 
 export function loginError(error){
-  return{
-    type: "USER_ERROR",
-    payload: error
+  return {
+    type: "LOGIN_ERROR"
+  }
+}
+
+export function signUpError(error){
+  return {
+    type: "SIGNUP_ERROR"
+
   }
 }
 
@@ -75,8 +81,6 @@ export function login(user){
       user.history.push("/")
     })
     .catch(err => {
-      console.log("hitting err")
-      console.log(err);
       dispatch(loginError(err))
     })
   }
@@ -98,10 +102,19 @@ export function signUp(user){
           email: user.email
         })
       })
+    .then(res => {
+      if(!res.ok) {
+        throw new Error('Cannot create account, email is already taken')
+      }
+      return res
+    })
     .then((res) => res.json())
     .then((userInfo) => {
       dispatch(createdAccount())
-      alert("Account created, now log in! :)")
+    })
+    .catch(err => {
+      console.log(err);
+      dispatch(signUpError(err))
     })
   }
 }

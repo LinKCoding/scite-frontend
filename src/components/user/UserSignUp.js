@@ -34,36 +34,51 @@ class UserSignUp extends React.Component {
     }
   }
 
+  signUpForm = () => {
+    return(
+      <form onSubmit={this.handleSubmit} >
+      <label className="label">
+        First Name:
+      </label>
+        <input type="text" name="firstName" onChange={this.handleChange} value={this.state.firstName} required/> <br/>
+      <label className="label">
+        Last Name:
+      </label>
+        <input type="text" name="lastName" onChange={this.handleChange} value={this.state.lastName} required/> <br/>
+      <label className="label">
+        Email:
+      </label>
+        <input type="text" name="email" onChange={this.handleChange} value={this.state.email} required/> <br/>
+      <label className="label">
+        Password:
+      </label>
+        <input type="password" name="password" onChange={this.handleChange} value={this.state.password} required/> <br/>
+      <label className="label">
+        Confirm Password:
+      </label>
+        <input type="password" name="passwordConfirmation" onChange={this.handleChange} value={this.state.passwordConfirmation} required/> <br/>
+        <input type="submit" value="Submit" />
+      </form>
+
+    )
+  }
 
   render(){
-    console.log(this.props);
-    return(
-      <div className="form">
-        <form onSubmit={this.handleSubmit}>
-        <label className="label">
-          First Name:
-        </label>
-          <input type="text" name="firstName" onChange={this.handleChange} value={this.state.firstName}/> <br/>
-        <label className="label">
-          Last Name:
-        </label>
-          <input type="text" name="lastName" onChange={this.handleChange} value={this.state.lastName}/> <br/>
-        <label className="label">
-          Email:
-        </label>
-          <input type="text" name="email" onChange={this.handleChange} value={this.state.email}/> <br/>
-        <label className="label">
-          Password:
-        </label>
-          <input type="password" name="password" onChange={this.handleChange} value={this.state.password}/> <br/>
-        <label className="label">
-          Confirm Password:
-        </label>
-          <input type="password" name="passwordConfirmation" onChange={this.handleChange} value={this.state.passwordConfirmation}/> <br/>
-          <input type="submit" value="Submit" />
-        </form>
-      </div>
-    )
+    if(!this.props.error){
+      return(
+        <div>
+          {this.signUpForm()}
+        </div>
+      )
+    } else {
+
+      return(
+        <div>
+          {this.signUpForm()}
+          <div>Sorry, email is already claimed</div>
+        </div>
+      )
+    }
   }
 }
 
@@ -75,4 +90,10 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-export default connect(null, mapDispatchToProps)(UserSignUp)
+function mapStateToProps(state){
+  return {
+    error: state.user.signUpError
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserSignUp)

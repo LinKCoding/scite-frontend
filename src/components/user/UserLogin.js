@@ -41,16 +41,13 @@ class UserLogin extends React.Component {
 
 
   render(){
-      if(this.props.errors.length === 0){
+      if(!this.props.error){
         return (
           <div>
             {this.loginForm()}
           </div>
         )
       } else {
-        console.log("hitting this");
-        console.log(this.props);
-        console.log(this.props.errors[0])
         return (
           <div>
             {this.loginForm()}
@@ -73,7 +70,7 @@ function mapStateToProps(state){
   return {
     fetchingAccount: state.user.fetchingAccount,
     loggedIn: state.user.loggedIn,
-    errors: state.user.errors
+    error: state.user.loginError
   }
 }
 
