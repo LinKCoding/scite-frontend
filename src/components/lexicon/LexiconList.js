@@ -1,6 +1,6 @@
 import React from 'react'
 import LexiconItem from './LexiconItem'
-import { Table } from 'semantic-ui-react'
+import { Table, Button } from 'semantic-ui-react'
 
 const LexiconList = (props) => {
   // debugger

@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import Dictionary from '../Dictionary'
 import { updateLexicon } from '../../actions/lexicon'
+import { settingNote } from '../../actions/note'
 import { Link } from 'react-router-dom'
 
 class LexiconDetail extends React.Component{
@@ -17,9 +18,15 @@ class LexiconDetail extends React.Component{
     })
   }
 
+  findNote = () => {
+    return this.props.notes.filter(note => note.id === this.props.word.note_id)[0]
+  }
+
   handleSubmit = (e) => {
     e.preventDefault()
     this.props.updateLexicon(this.state, this.props.word.id)
+    console.log(this.findNote());
+    this.props.settingNote(this.props.word.id)
   }
 
   render(){
@@ -46,8 +53,17 @@ function mapDispatchToProps(dispatch){
   return {
     updateLexicon: (word, lexiconID) => {
       dispatch(updateLexicon(word, lexiconID))
+    },
+    settingNote: (note) => {
+      dispatch(settingNote(note))
     }
   }
 }
 
-export default connect(null, mapDispatchToProps)(LexiconDetail)
+function mapStateToProps(state){
+  return{
+    notes: state.note.notes
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LexiconDetail)

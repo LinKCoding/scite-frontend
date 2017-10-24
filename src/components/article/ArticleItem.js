@@ -2,7 +2,7 @@ import React from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { createNote } from '../../actions/note'
-import { Table, Image } from 'semantic-ui-react'
+import { Table, Image, Button, Container } from 'semantic-ui-react'
 
 class ArticleItem extends React.Component {
   state = {
@@ -29,12 +29,14 @@ class ArticleItem extends React.Component {
     } else {
       return(
         <Table.Row>
-          <Table.Cell>{formated_date}</Table.Cell>
-          <Table.Cell><img src={thumbnail} alt={name}/></Table.Cell>
+          <Table.Cell textAlign="center"><img src={thumbnail} alt={name}/></Table.Cell>
+          <Table.Cell singleLine textAlign="center">
+            {formated_date}
+          </Table.Cell>
           <Table.Cell>{name}</Table.Cell>
-          <Table.Cell>{checkForNote ?
-            <Link to={`notes/${selectedNote.id}`}>Edit Note</Link> :
-            <button onClick={this.handleClick}>Start a note!</button>
+          <Table.Cell textAlign="center">{checkForNote ?
+            <Button color="blue" inverted><Link to={`notes/${selectedNote.id}`}>Edit Note</Link></Button> :
+            <Button color="green" onClick={this.handleClick}>Start a note!</Button>
           }
           </Table.Cell>
         </Table.Row>

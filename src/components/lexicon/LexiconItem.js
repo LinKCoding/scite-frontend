@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { deleteLexicon } from '../../actions/lexicon'
-import { Table } from 'semantic-ui-react'
+import { Table, Button, Icon } from 'semantic-ui-react'
 
 class LexiconItem extends React.Component{
   handleClick = () => {
@@ -16,8 +16,14 @@ class LexiconItem extends React.Component{
       <Table.Row>
         <Table.Cell><Link to={`/lexicon/${id}`}>{word}</Link></Table.Cell>
         <Table.Cell>{definition}</Table.Cell>
-        <Table.Cell><Link to={`/notes/${note_id}`}>Edit</Link></Table.Cell>
-        <Table.Cell><button onClick={this.handleClick}>Delete</button><br/></Table.Cell>
+        <Table.Cell>
+          <Button color="blue" inverted><Link to={`/notes/${note_id}`}>Edit</Link></Button>
+        </Table.Cell>
+        <Table.Cell singleLine>
+          <Button color="red" onClick={this.handleClick}>
+            <Icon name="trash outline"/> Delete
+          </Button>
+        </Table.Cell>
       </Table.Row>
     )
   }
