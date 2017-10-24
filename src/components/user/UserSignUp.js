@@ -1,6 +1,8 @@
 import React from 'react';
 import { signUp } from '../../actions/user'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
+import { Container, Button, Form, Segment, Message } from 'semantic-ui-react'
 
 class UserSignUp extends React.Component {
   state = {
@@ -24,7 +26,9 @@ class UserSignUp extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault()
     if(this.checkPasswords()){
-      this.props.signUp(this.state)
+      const { firstName,lastName, email, password } = this.state
+      const allInfo = { firstName, lastName, email, password, history: this.props.history}
+      this.props.signUp(allInfo)
     } else {
       alert("your passwords don't match")
       this.setState({
@@ -36,47 +40,41 @@ class UserSignUp extends React.Component {
 
   signUpForm = () => {
     return(
-      <form onSubmit={this.handleSubmit} >
-      <label className="label">
-        First Name:
-      </label>
-        <input type="text" name="firstName" onChange={this.handleChange} value={this.state.firstName} required/> <br/>
-      <label className="label">
-        Last Name:
-      </label>
-        <input type="text" name="lastName" onChange={this.handleChange} value={this.state.lastName} required/> <br/>
-      <label className="label">
-        Email:
-      </label>
-        <input type="text" name="email" onChange={this.handleChange} value={this.state.email} required/> <br/>
-      <label className="label">
-        Password:
-      </label>
-        <input type="password" name="password" onChange={this.handleChange} value={this.state.password} required/> <br/>
-      <label className="label">
-        Confirm Password:
-      </label>
-        <input type="password" name="passwordConfirmation" onChange={this.handleChange} value={this.state.passwordConfirmation} required/> <br/>
-        <input type="submit" value="Submit" />
-      </form>
+      <Segment inverted clearing color='teal'>
+        <Form inverted onSubmit={this.handleSubmit} >
+          <Form.Input label='First Name:' placeholder='First Name' name="firstName" onChange={this.handleChange} value={this.state.firstName} required/>
 
+          <Form.Input label='Last Name:' placeholder='Last Name' name="lastName" onChange={this.handleChange} value={this.state.lastName} required/>
+
+          <Form.Input label='E-mail:' placeholder='E-mail' name="email" onChange={this.handleChange} value={this.state.email} required/>
+
+          <Form.Input type="password" label='Password:' placeholder='Password' name="password" onChange={this.handleChange} value={this.state.password} required/>
+
+          <Form.Input type="password" label='Confirm Password:' placeholder='Confirm Password' name="passwordConfirmation" onChange={this.handleChange} value={this.state.passwordConfirmation} required/>
+          <Button position="right" color="blue" type="submit" className="ui right floated"> Sign up </Button>
+        </Form>
+      </Segment>
     )
   }
 
   render(){
+    console.log(this.props);
     if(!this.props.error){
       return(
-        <div>
+        <Container textAlign='left'>
           {this.signUpForm()}
-        </div>
+        </Container>
       )
     } else {
 
       return(
-        <div>
+        <Container textAlign='left'>
           {this.signUpForm()}
-          <div>Sorry, email is already claimed</div>
-        </div>
+          <Message error
+             header='Error'
+             content='This email is already taken.'
+           />
+       </Container>
       )
     }
   }
@@ -96,4 +94,4 @@ function mapStateToProps(state){
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserSignUp)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(UserSignUp))

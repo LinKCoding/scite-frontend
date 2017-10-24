@@ -88,6 +88,7 @@ export function login(user){
 
 
 export function signUp(user){
+  console.log(user);
   return function(dispatch){
     dispatch(fetchingAccount())
     fetch("http://localhost:3000/api/v1/users", {
@@ -110,7 +111,12 @@ export function signUp(user){
     })
     .then((res) => res.json())
     .then((userInfo) => {
-      dispatch(createdAccount())
+      localStorage.setItem('jwt', userInfo.jwt)
+      dispatch(loggedIn(userInfo.user_id))
+    })
+    .then(() => {
+      console.log(user.history);
+      user.history.push("/")
     })
     .catch(err => {
       console.log(err);

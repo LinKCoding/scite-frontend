@@ -2,12 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux'
 import { login } from '../../actions/user'
 import { Redirect, withRouter } from 'react-router-dom'
+import { Container, Button, Form, Segment, Message } from 'semantic-ui-react'
 
 class UserLogin extends React.Component {
   state = {
     email: "",
     password: "",
-    navigating: false,
   }
 
   handleChange = (e) => {
@@ -25,17 +25,15 @@ class UserLogin extends React.Component {
 
   loginForm = () => {
     return(
-      <form className="form" onSubmit={this.handleSubmit}>
-        <label className="label">
-          Email:
-        </label>
-        <input className="inputField" type="text" name="email" onChange={this.handleChange} value={this.state.email}/> <br/>
-        <label className="label">
-          Password:
-        </label>
-        <input className="inputField" type="password" name="password" onChange={this.handleChange} value={this.state.password}/> <br/>
-        <input className="fsSubmitButton" type="submit" value="Submit" />
-      </form>
+      <Segment inverted clearing color='teal'>
+        <Form inverted onSubmit={this.handleSubmit} >
+          <Form.Input label='E-mail:' placeholder='E-mail' name="email" onChange={this.handleChange} value={this.state.email} required/>
+
+          <Form.Input type="password" label='Password:' placeholder='Password' name="password" onChange={this.handleChange} value={this.state.password} required/>
+
+          <Button position="right" color="blue" type="submit" className="ui right floated"> Login </Button>
+        </Form>
+      </Segment>
     )
   }
 
@@ -43,16 +41,20 @@ class UserLogin extends React.Component {
   render(){
       if(!this.props.error){
         return (
-          <div>
+          <Container textAlign='left'>
             {this.loginForm()}
-          </div>
+
+          </Container>
         )
       } else {
         return (
-          <div>
+          <Container textAlign='left'>
             {this.loginForm()}
-            <div>Incorrect Username or password</div>
-          </div>
+            <Message error
+               header='Error'
+               content='Incorrect E-mail or password.'
+             />
+         </Container>
         )
       }
   }

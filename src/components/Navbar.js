@@ -6,70 +6,56 @@ import { Menu } from 'semantic-ui-react'
 
 class Navbar extends React.Component {
   state = {
-    navigating: false
+    activeItem: 'home'
   }
+
+  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
   logOut = (e) => {
     e.preventDefault()
     localStorage.removeItem('jwt')
     this.props.logOut()
-    // this.setState({
-    //   navigating: true
-    // })
     this.props.history.push("/login")
   }
 
   render() {
-    if(this.state.navigating){
-      return <Redirect exact to='/' push={true}/>
-    } else if(localStorage.getItem('jwt')){
+    const { activeItem } = this.state
+    if(localStorage.getItem('jwt')){
       return(
         <Menu>
-          <Menu.Item >
+          <Menu.Item name='home' active={activeItem === 'home'} onClick={this.handleItemClick}>
             <NavLink to="/"> Homepage </NavLink>
           </Menu.Item>
-          <Menu.Item>
+          <Menu.Item name='articles' active={activeItem === 'articles'} onClick={this.handleItemClick}>
             <NavLink to="/articles"> Articles </NavLink>
           </Menu.Item>
-          <Menu.Item>
+          <Menu.Item name='lexicon' active={activeItem === 'lexicon'} onClick={this.handleItemClick}>
             <NavLink to="/lexicon"> Lexicon </NavLink>
           </Menu.Item>
-          <Menu.Item>
+          <Menu.Item name='notes' active={activeItem === 'notes'} onClick={this.handleItemClick}>
             <NavLink to="/notes"> Notes </NavLink>
           </Menu.Item>
           <Menu.Item position="right">
             <NavLink to="/" onClick={this.logOut}> Logout </NavLink>
           </Menu.Item>
-
         </Menu>
       )
     } else {
       return(
-        <div>
-          <NavLink to="/signup"> Signup </NavLink>
-          <NavLink to="/login"> Login </NavLink>
-        </div>
+        <Menu>
+          <Menu.Menu position="right">
+            <Menu.Item name='signup' active={activeItem === 'signup'} onClick={this.handleItemClick}>
+              <NavLink to="/signup"> Signup </NavLink>
+            </Menu.Item>
+            <Menu.Item name='login' active={activeItem === 'login'} onClick={this.handleItemClick}>
+              <NavLink to="/login"> Login </NavLink>
+            </Menu.Item>
+          </Menu.Menu>
+        </Menu>
       )
     }
   }
-
 }
-//
-
-
-// render(){
-//   return(
-//     <div>
-//       <NavLink to="/"> Homepage </NavLink>
-//       <NavLink to="/articles"> Articles </NavLink>
-//       <NavLink to="/lexicon"> Lexicon </NavLink>
-//       <NavLink to="/notes"> Notes </NavLink>
-//       <NavLink to="/signup"> Signup </NavLink>
-//       <NavLink to="/login"> Login </NavLink>
-//       <NavLink to="/" onClick={this.logOut}> Logout </NavLink>
-//     </div>
-//   )
-// }
 
 function mapDispatchToProps(dispatch) {
   return {
