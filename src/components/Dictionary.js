@@ -1,5 +1,7 @@
 import React from 'react'
 import DefinitionList from './DefinitionList'
+import { Form, Segment, Button } from 'semantic-ui-react'
+
 class Dictionary extends React.Component{
   state = {
     word: "",
@@ -36,13 +38,14 @@ class Dictionary extends React.Component{
   render(){
     // console.log(this.state.definitions);
     return(
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          <input type="text" value={this.state.word} onChange={this.handleChange}/>
-          <input type="submit" />
-        </form>
+      <Segment clearing>
+        <h2>Scite Dictionary</h2>
+        <Form onSubmit={this.handleSubmit}>
+          <Form.Input type="text" value={this.state.word} onChange={this.handleChange}/>
+          <Button color="blue" type="submit" className="ui right floated"> Define </Button>
+        </Form>
         <DefinitionList definitions={this.state.definitions} searched={this.state.searched}/>
-      </div>
+      </Segment>
     )
   }
 }
