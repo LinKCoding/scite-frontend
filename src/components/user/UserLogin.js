@@ -32,7 +32,7 @@ class UserLogin extends React.Component {
 
           <Form.Input type="password" label='Password:' placeholder='Password' name="password" onChange={this.handleChange} value={this.state.password} required/>
 
-          <Button position="right" color="blue" type="submit" className="ui right floated"> Login </Button>
+          <Button color="blue" type="submit" className="ui right floated"> Login </Button>
         </Form>
       </Segment>
     )

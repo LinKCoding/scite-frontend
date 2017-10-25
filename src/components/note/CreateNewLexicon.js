@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { addingWord } from '../../actions/lexicon'
+import { Form, Button } from 'semantic-ui-react'
 
 class CreateNewLexicon extends React.Component {
   state = {
@@ -27,11 +28,14 @@ class CreateNewLexicon extends React.Component {
 
   render(){
     return(
-      <form onSubmit={this.handleSubmit}>
-        <input onChange={this.handleChange} name="word" value={this.state.word} placeholder="word goes here..."/>
-        <input onChange={this.handleChange} name="definition" value={this.state.definition} placeholder="definition goes here..."/>
-        <input type="submit" />
-      </form>
+      <Form onSubmit={this.handleSubmit}>
+        <strong>Add to your Lexicon</strong>
+        <Form.Group floated>
+          <Form.Input onChange={this.handleChange} name="word" value={this.state.word} placeholder="word goes here..." width={4}/>
+          <Form.Input onChange={this.handleChange} name="definition" value={this.state.definition} placeholder="definition goes here..." width={11}/>
+          <Button color="blue" type="submit" compact> Grasp </Button>
+        </Form.Group>
+      </Form>
     )
   }
 }

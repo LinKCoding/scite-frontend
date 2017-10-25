@@ -37,16 +37,30 @@ class Dictionary extends React.Component{
 
   render(){
     // console.log(this.state.definitions);
-    return(
-      <Segment clearing>
-        <h2>Scite Dictionary</h2>
-        <Form onSubmit={this.handleSubmit}>
-          <Form.Input type="text" value={this.state.word} onChange={this.handleChange}/>
-          <Button color="blue" type="submit" className="ui right floated"> Define </Button>
-        </Form>
-        <DefinitionList definitions={this.state.definitions} searched={this.state.searched}/>
-      </Segment>
-    )
+    if(this.props.oneLine){
+      return(
+        <Segment >
+          <Form onSubmit={this.handleSubmit}>
+            <Form.Group>
+              <Form.Input inline label="Scite Dictionary" type="text" value={this.state.word} onChange={this.handleChange}/>
+              <Button color="blue" type="submit" className="ui right floated"> Define </Button>
+            </Form.Group>
+          </Form>
+          <DefinitionList definitions={this.state.definitions} searched={this.state.searched}/>
+        </Segment>
+      )
+    } else {
+      return(
+        <Segment clearing>
+          <h2>Scite Dictionary</h2>
+          <Form onSubmit={this.handleSubmit}>
+            <Form.Input type="text" value={this.state.word} onChange={this.handleChange}/>
+            <Button color="blue" type="submit" className="ui right floated"> Define </Button>
+          </Form>
+          <DefinitionList definitions={this.state.definitions} searched={this.state.searched}/>
+        </Segment>
+      )
+    }
   }
 }
 

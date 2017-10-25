@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { fetchArticlesAndSetLatest } from '../actions/article'
 import { createNote, fetchNotes } from '../actions/note'
 import { Link, Redirect } from 'react-router-dom'
-import { Grid,Header, Segment, Button } from 'semantic-ui-react'
+import { Grid,Header, Segment, Button, Dimmer, Loader } from 'semantic-ui-react'
 
 
 
@@ -62,7 +62,13 @@ class Homepage extends React.Component {
 
           <Grid.Row>
             <Grid.Column>
-              <ArticleWindow  article={ articles.length !== 0 ? articles[articles.length - 1] : null}/>
+              {articles.length !== 0 ?
+                <ArticleWindow  article={articles[articles.length - 1]} dimensions={{height:'600vh', width:'800vh'}} /> :
+                  <Dimmer active>
+                    <Loader size='large'>Loading</Loader>
+                  </Dimmer>
+              }
+
             </Grid.Column>
           </Grid.Row>
 
@@ -109,6 +115,8 @@ function mapDispatchToProps(dispatch){
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Homepage)
+
+// <ArticleWindow  article={ articles.length !== 0 ? articles[articles.length - 1] : null}/>
 
 // <Grid centered columns={2}>
 //   <Grid.Row centered columns={2} >

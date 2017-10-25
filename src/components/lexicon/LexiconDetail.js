@@ -57,6 +57,7 @@ class LexiconDetail extends React.Component{
                 <Form.Input label='Word' type='text' name="word" onChange={this.handleChange} value={this.state.word}/>
                 <Form.TextArea label='Definition' type='textarea' name="definition" onChange={this.handleChange} value={this.state.definition}/>
                 <Button color="teal" type="submit" className="ui right floated"> Change word </Button>
+                <Link to={`/notes/${note_id}`}>Go back to your note</Link>
               </Form>
             </Segment>
             {this.state.changed? <Message color="teal" content={`Successfully saved "${this.state.word}"`} /> : null}

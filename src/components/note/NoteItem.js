@@ -6,7 +6,7 @@ import Dictionary from '../Dictionary'
 import PlainEditor from './PlainEditor'
 import NoteLexicon from './NoteLexicon'
 import CreateNewLexicon from './CreateNewLexicon'
-import { Grid, Container } from 'semantic-ui-react'
+import { Grid, Container, Segment, Image, Header } from 'semantic-ui-react'
 
 class NoteItem extends React.Component {
 
@@ -14,6 +14,28 @@ class NoteItem extends React.Component {
     this.props.setNote(this.props.noteID)
   }
 
+  checkForLexicon = () => {
+    return this.props.lexicon.filter((word) => {
+      return word.note_id === parseInt(this.props.currentNote.note.id, 10)
+    })
+  }
+
+  lexiconSegment = () => {
+    const relevantLexicon = this.checkForLexicon()
+    return(
+      <Grid.Row>
+        <Grid.Column width={1}>
+        </Grid.Column>
+        <Grid.Column width={14}>
+          <Segment>
+            <NoteLexicon lexicon={relevantLexicon}/>
+          </Segment>
+        </Grid.Column>
+        <Grid.Column width={1}>
+        </Grid.Column>
+      </Grid.Row>
+    )
+  }
 
   render(){
 
@@ -30,25 +52,44 @@ class NoteItem extends React.Component {
             </Grid.Column>
             <Grid.Column width={9}>
 
-                <ArticleWindow article={this.props.currentNote.article ? this.props.currentNote.article : null }/>
+                <ArticleWindow article={this.props.currentNote.article ? this.props.currentNote.article : null } dimensions={{height:'450vh', width:'800vh'}}/>
 
             </Grid.Column>
-            <Grid.Column width={5} className="container-white">
-
+            <Grid.Column width={5}>
+              <Segment color="teal" inverted>
+                <h2>
+                    Note for: {this.props.currentNote.article ? this.props.currentNote.article.name : null}
+                </h2>
+              </Segment>
                 <PlainEditor noteID={this.props.noteID} noteContent={this.props.currentNote.note.content}/>
 
             </Grid.Column>
             <Grid.Column width={1}>
             </Grid.Column>
           </Grid.Row>
+
           <Grid.Row>
-            <CreateNewLexicon noteID={this.props.noteID}/>
+            <Grid.Column width={1}>
+            </Grid.Column>
+            <Grid.Column width={14}>
+              <Segment id="new-lexicon">
+                <CreateNewLexicon noteID={this.props.noteID}/>
+              </Segment>
+            </Grid.Column>
+            <Grid.Column width={1}>
+            </Grid.Column>
           </Grid.Row>
-          <Grid.Row className="container-white">
-            <NoteLexicon lexicon={relevantLexicon}/>
-          </Grid.Row>
+
+          { this.checkForLexicon().length !== 0 ? this.lexiconSegment() : null }
+
           <Grid.Row>
-            <Dictionary />
+            <Grid.Column width={1}>
+            </Grid.Column>
+            <Grid.Column width={14}>
+              <Dictionary oneLine={true}/>
+            </Grid.Column>
+            <Grid.Column width={1}>
+            </Grid.Column>
           </Grid.Row>
         </Grid>
       )

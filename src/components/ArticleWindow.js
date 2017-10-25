@@ -1,12 +1,17 @@
 import React from 'react'
+import { Segment } from 'semantic-ui-react'
 
 class ArticleWindow extends React.Component {
 
   render() {
 
     if(this.props.article) {
+      console.log(this.props);
+      const { height, width } = this.props.dimensions
     return(
-      <object height="600vh" width="800vh" data={this.props.article.url} >Article goes here</object>
+      <Segment>
+        <object height={height} width={width} data={this.props.article.url} >Article goes here</object>
+      </Segment>
     )} else {
       return null
     }

@@ -85,7 +85,7 @@
 }
 
 .editor :global(.public-DraftEditor-content) {
-  min-height: 60vh;
+  min-height: 43.8vh;
   min-width: 100vh;
 }
 
@@ -108,3 +108,7 @@
 .headlineButton:focus {
   background: #f3f3f3;
 }
+
+/*#new-lexicon {
+  max-height: 80%;
+}*/

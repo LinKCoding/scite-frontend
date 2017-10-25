@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { deleteLexicon } from '../../actions/lexicon'
+import { List, Button } from 'semantic-ui-react'
 
 
 class NoteLexiconItem extends React.Component{
@@ -11,15 +12,23 @@ class NoteLexiconItem extends React.Component{
     this.props.deleteLexicon(this.props.word.id) : null }
   }
 
+  handleRedirect = () => {
+    this.props.history.push(`/lexicon/${this.props.word.id}`)
+  }
+
   render(){
     const { word, definition, id } = this.props.word
     return(
-      <div>
-        <span>Word: {word}</span><br/>
-        <span>Definition: {definition}</span><br/>
-        <span><Link to={`/lexicon/${id}`}> Edit</Link></span> <br/>
-        <button onClick={this.handleClick}>Delete</button><br/>
-      </div>
+      <List.Item>
+        <List.Icon name='cloud' />
+        <List.Content>
+          <List.Description>
+            {word} - {definition}
+            <Button color="blue"  onClick={this.handleRedirect} size="mini" circular icon="write"></Button>
+            <Button color="red" onClick={this.handleClick} size="mini" circular icon="trash outline"></Button>
+          </List.Description>
+        </List.Content>
+      </List.Item>
     )
   }
 }

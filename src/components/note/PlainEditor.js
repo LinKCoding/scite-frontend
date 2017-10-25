@@ -20,6 +20,7 @@ import editorStyles from './editorStyles.css';
 import debounce from 'lodash/debounce';
 import { connect } from 'react-redux'
 import { setNote } from '../../actions/note'
+import { Segment } from 'semantic-ui-react'
 
 class HeadlinesPicker extends Component {
   componentDidMount() {
@@ -127,7 +128,7 @@ class PlainEditor extends Component {
 
   render() {
     return (
-      <div className="editor" onClick={this.focus}>
+      <Segment className="editor" onClick={this.focus}>
         <Editor
           editorState={this.state.editorState}
           onChange={this.onChange}
@@ -137,7 +138,7 @@ class PlainEditor extends Component {
         <InlineToolbar />
         <EmojiSuggestions />
 
-      </div>
+      </Segment>
     );
   }
 }
