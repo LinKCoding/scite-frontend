@@ -82,11 +82,13 @@
   margin-bottom: 2em;
   box-shadow: inset 0px 1px 8px -3px #ABABAB;
   background: #fefefe;
+  font-family: 'Handlee';
 }
 
+
 .editor :global(.public-DraftEditor-content) {
-  min-height: 43.8vh;
-  min-width: 100vh;
+  min-height: 61vh;
+  min-width: 50vh;
 }
 
 .headlineButtonWrapper {
@@ -109,6 +111,6 @@
   background: #f3f3f3;
 }
 
-/*#new-lexicon {
-  max-height: 80%;
-}*/
+.options {
+  margin-bottom: 20px;
+}

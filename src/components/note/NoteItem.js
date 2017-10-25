@@ -56,13 +56,7 @@ class NoteItem extends React.Component {
 
             </Grid.Column>
             <Grid.Column width={5}>
-              <Segment color="teal" inverted>
-                <h2>
-                    Note for: {this.props.currentNote.article ? this.props.currentNote.article.name : null}
-                </h2>
-              </Segment>
-                <PlainEditor noteID={this.props.noteID} noteContent={this.props.currentNote.note.content}/>
-
+              <PlainEditor noteID={this.props.noteID} noteContent={this.props.currentNote.note.content}/>
             </Grid.Column>
             <Grid.Column width={1}>
             </Grid.Column>

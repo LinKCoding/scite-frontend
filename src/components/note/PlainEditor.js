@@ -82,11 +82,9 @@ const inlineToolbarPlugin = createInlineToolbarPlugin({
 });
 
 
-const emojiPlugin = createEmojiPlugin();
 // const inlineToolbarPlugin = createInlineToolbarPlugin();
 const { InlineToolbar } = inlineToolbarPlugin;
-const { EmojiSuggestions, EmojiSelect } = emojiPlugin;
-const plugins = [inlineToolbarPlugin, emojiPlugin];
+const plugins = [inlineToolbarPlugin];
 
 class PlainEditor extends Component {
   constructor(props) {
@@ -136,7 +134,7 @@ class PlainEditor extends Component {
           ref={(element) => { this.editor = element; }}
         />
         <InlineToolbar />
-        <EmojiSuggestions />
+
 
       </Segment>
     );

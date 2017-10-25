@@ -9,7 +9,7 @@ class ArticleWindow extends React.Component {
       console.log(this.props);
       const { height, width } = this.props.dimensions
     return(
-      <Segment>
+      <Segment id="article">
         <object height={height} width={width} data={this.props.article.url} >Article goes here</object>
       </Segment>
     )} else {
