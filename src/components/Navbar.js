@@ -2,7 +2,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { logOut } from '../actions/user'
 import { NavLink, Redirect } from 'react-router-dom'
-import { Menu } from 'semantic-ui-react'
+import { Menu, Image } from 'semantic-ui-react'
+
 
 class Navbar extends React.Component {
   state = {
@@ -22,9 +23,9 @@ class Navbar extends React.Component {
     const { activeItem } = this.state
     if(localStorage.getItem('jwt')){
       return(
-        <Menu>
+        <Menu color='teal' inverted>
           <Menu.Item name='home' active={activeItem === 'home'} onClick={this.handleItemClick}>
-            <NavLink to="/"> Homepage </NavLink>
+            <NavLink to="/"><Image src="/Scite-icon.png" style={{width:'29px',height:'20px'}} /></NavLink>
           </Menu.Item>
           <Menu.Item name='articles' active={activeItem === 'articles'} onClick={this.handleItemClick}>
             <NavLink to="/articles"> Articles </NavLink>
@@ -42,7 +43,10 @@ class Navbar extends React.Component {
       )
     } else {
       return(
-        <Menu>
+        <Menu color='teal' inverted>
+          <Menu.Item name='home' active={activeItem === 'home'} onClick={this.handleItemClick}>
+            <Image src="/Scite-icon.png" style={{width:'29px',height:'20px'}} />
+          </Menu.Item>
           <Menu.Menu position="right">
             <Menu.Item name='signup' active={activeItem === 'signup'} onClick={this.handleItemClick}>
               <NavLink to="/signup"> Signup </NavLink>

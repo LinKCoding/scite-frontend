@@ -29,14 +29,14 @@ class ArticleItem extends React.Component {
     } else {
       return(
         <Table.Row>
-          <Table.Cell textAlign="center"><img src={thumbnail} alt={name}/></Table.Cell>
+          <Table.Cell textAlign="center"><img src={thumbnail} alt={name} style={{height:'40px', width:'40px'}}/></Table.Cell>
           <Table.Cell singleLine textAlign="center">
             {formated_date}
           </Table.Cell>
           <Table.Cell>{name}</Table.Cell>
           <Table.Cell textAlign="center">{checkForNote ?
             <Button color="blue" inverted><Link to={`notes/${selectedNote.id}`}>Edit Note</Link></Button> :
-            <Button color="green" onClick={this.handleClick}>Start a note!</Button>
+            <Button color="green" compact onClick={this.handleClick}>Start a note!</Button>
           }
           </Table.Cell>
         </Table.Row>

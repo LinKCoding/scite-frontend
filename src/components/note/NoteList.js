@@ -13,7 +13,7 @@ class NoteList extends React.Component {
             <Table.Row>
               <Table.HeaderCell>Date Started</Table.HeaderCell>
               <Table.HeaderCell>Article title</Table.HeaderCell>
-              <Table.HeaderCell>Delete</Table.HeaderCell>
+              <Table.HeaderCell textAlign="center">Delete</Table.HeaderCell>
             </Table.Row>
           </Table.Header>
           <Table.Body>

@@ -1,5 +1,6 @@
 import React from 'react'
 import ArticleItem from './ArticleItem'
+import './Article.css'
 import { Header, Table, Container } from 'semantic-ui-react'
 
 class ArticleList extends React.Component{
@@ -10,9 +11,15 @@ class ArticleList extends React.Component{
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell></Table.HeaderCell>
-            <Table.HeaderCell textAlign="center">Date</Table.HeaderCell>
-            <Table.HeaderCell textAlign="center">Headline</Table.HeaderCell>
-            <Table.HeaderCell textAlign="center">Note</Table.HeaderCell>
+            <Table.HeaderCell textAlign="center" className='headline'>
+              Date
+            </Table.HeaderCell>
+            <Table.HeaderCell textAlign="center">
+              Headline
+            </Table.HeaderCell>
+            <Table.HeaderCell textAlign="center">
+              Note
+            </Table.HeaderCell>
           </Table.Row>
         </Table.Header>
         <Table.Body>

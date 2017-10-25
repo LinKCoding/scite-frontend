@@ -6,7 +6,7 @@ import Dictionary from '../Dictionary'
 import PlainEditor from './PlainEditor'
 import NoteLexicon from './NoteLexicon'
 import CreateNewLexicon from './CreateNewLexicon'
-import { Grid } from 'semantic-ui-react'
+import { Grid, Container } from 'semantic-ui-react'
 
 class NoteItem extends React.Component {
 
@@ -24,24 +24,32 @@ class NoteItem extends React.Component {
       })
       console.log(relevantLexicon);
       return(
-        <Grid celled>
-          <Grid.Row>
-            <Grid.Column width={13}>
-              <ArticleWindow article={this.props.currentNote.article ? this.props.currentNote.article : null }/>
+        <Grid >
+          <Grid.Row> {/*Checking*/}
+            <Grid.Column width={1}>
+            </Grid.Column>
+            <Grid.Column width={9}>
+
+                <ArticleWindow article={this.props.currentNote.article ? this.props.currentNote.article : null }/>
+
+            </Grid.Column>
+            <Grid.Column width={5} className="container-white">
+
+                <PlainEditor noteID={this.props.noteID} noteContent={this.props.currentNote.note.content}/>
+
             </Grid.Column>
             <Grid.Column width={1}>
-              <Dictionary />
             </Grid.Column>
           </Grid.Row>
           <Grid.Row>
             <CreateNewLexicon noteID={this.props.noteID}/>
           </Grid.Row>
-          <Grid.Row>
+          <Grid.Row className="container-white">
             <NoteLexicon lexicon={relevantLexicon}/>
           </Grid.Row>
           <Grid.Row>
-            <PlainEditor noteID={this.props.noteID} noteContent={this.props.currentNote.note.content}/>
-          </Grid.Row>  
+            <Dictionary />
+          </Grid.Row>
         </Grid>
       )
     } else {

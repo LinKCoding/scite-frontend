@@ -3,6 +3,7 @@ import { signUp } from '../../actions/user'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { Container, Button, Form, Segment, Message } from 'semantic-ui-react'
+import './Login.css'
 
 class UserSignUp extends React.Component {
   state = {
@@ -40,8 +41,8 @@ class UserSignUp extends React.Component {
 
   signUpForm = () => {
     return(
-      <Segment inverted clearing color='teal'>
-        <Form inverted onSubmit={this.handleSubmit} >
+      <Segment inverted clearing color='teal' >
+        <Form inverted onSubmit={this.handleSubmit}>
           <Form.Input label='First Name:' placeholder='First Name' name="firstName" onChange={this.handleChange} value={this.state.firstName} required/>
 
           <Form.Input label='Last Name:' placeholder='Last Name' name="lastName" onChange={this.handleChange} value={this.state.lastName} required/>
@@ -61,14 +62,14 @@ class UserSignUp extends React.Component {
     console.log(this.props);
     if(!this.props.error){
       return(
-        <Container textAlign='left'>
+        <Container textAlign='left' className="login">
           {this.signUpForm()}
         </Container>
       )
     } else {
 
       return(
-        <Container textAlign='left'>
+        <Container textAlign='left' className="login">
           {this.signUpForm()}
           <Message error
              header='Error'

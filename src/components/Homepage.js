@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { fetchArticlesAndSetLatest } from '../actions/article'
 import { createNote, fetchNotes } from '../actions/note'
 import { Link, Redirect } from 'react-router-dom'
-import { Grid } from 'semantic-ui-react'
+import { Grid,Header, Segment, Button } from 'semantic-ui-react'
 
 
 
@@ -50,13 +50,14 @@ class Homepage extends React.Component {
     if(navigating && this.props.currentNote.note){
       return <Redirect to={`/notes/${this.props.currentNote.note.id}`} push={true}/>
     } else if(this.props.allNotes.fetchedNotes && this.props.articles[0]){
-
       return (
-        <Grid centered columns={2}>
-          <Grid.Row centered columns={2} >
-            <Grid.Column>
-              <span> ARTICLE OF THE DAY </span>
-            </Grid.Column>
+        <Grid centered columns={2} >
+          <Grid.Row className="button-font">
+            <Segment color="teal" inverted className="button-font">
+              <Header as='h3' textAlign='center' className="button-font">
+                Article of the Day:
+              </Header>
+            </Segment>
           </Grid.Row>
 
           <Grid.Row>
@@ -66,15 +67,14 @@ class Homepage extends React.Component {
           </Grid.Row>
 
           <Grid.Row>
-            {this.checkForNote() ?
-              <Grid.Column>
-                <Link to={`/notes/${this.findNoteID()}`}>Edit Note</Link>
-              </Grid.Column> :
-              <Grid.Column>
-                <button onClick={this.handleClick}> Start on a new note! </button>
-              </Grid.Column>
-            }
+            <Grid.Column textAlign="center">
+              {this.checkForNote() ?
+                  <Button color="blue" inverted><Link to={`/notes/${this.findNoteID()}`}>Edit Note</Link></Button> :
+                  <Button color="green" onClick={this.handleClick}>Start on a new note!</Button>
+              }
+            </Grid.Column>
           </Grid.Row>
+
         </Grid>
       )
     } else {
@@ -109,3 +109,28 @@ function mapDispatchToProps(dispatch){
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Homepage)
+
+// <Grid centered columns={2}>
+//   <Grid.Row centered columns={2} >
+//     <Grid.Column>
+//       <span> ARTICLE OF THE DAY </span>
+//     </Grid.Column>
+//   </Grid.Row>
+//
+//   <Grid.Row>
+//     <Grid.Column>
+//       <ArticleWindow  article={ articles.length !== 0 ? articles[articles.length - 1] : null}/>
+//     </Grid.Column>
+//   </Grid.Row>
+//
+  // <Grid.Row>
+  //   {this.checkForNote() ?
+  //     <Grid.Column>
+  //       <Link to={`/notes/${this.findNoteID()}`}>Edit Note</Link>
+  //     </Grid.Column> :
+  //     <Grid.Column>
+  //       <button onClick={this.handleClick}> Start on a new note! </button>
+  //     </Grid.Column>
+  //   }
+  // </Grid.Row>
+// </Grid>

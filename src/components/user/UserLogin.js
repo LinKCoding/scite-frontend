@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { login } from '../../actions/user'
 import { Redirect, withRouter } from 'react-router-dom'
 import { Container, Button, Form, Segment, Message } from 'semantic-ui-react'
+import './Login.css'
 
 class UserLogin extends React.Component {
   state = {
@@ -41,14 +42,14 @@ class UserLogin extends React.Component {
   render(){
       if(!this.props.error){
         return (
-          <Container textAlign='left'>
+          <Container textAlign='left' className="login">
             {this.loginForm()}
 
           </Container>
         )
       } else {
         return (
-          <Container textAlign='left'>
+          <Container textAlign='left' className="login">
             {this.loginForm()}
             <Message error
                header='Error'
