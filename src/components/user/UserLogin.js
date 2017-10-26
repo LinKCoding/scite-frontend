@@ -24,6 +24,7 @@ class UserLogin extends React.Component {
     this.props.login(user)
   }
 
+
   loginForm = () => {
     return(
       <Segment inverted clearing color='teal'>

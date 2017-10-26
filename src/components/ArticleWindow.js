@@ -9,7 +9,7 @@ class ArticleWindow extends React.Component {
     return(
       <Segment id="article">
 
-        <object height={height} width={width} data={this.props.article.url} > {this.props.homepage ?  <Label as='a' color='teal' ribbon>Article of the day</Label> : null} Article goes here</object>
+        <object height={'652vh'} width={'620vh'} data={this.props.article.url} > {this.props.homepage ?  <Label as='a' color='teal' ribbon>Article of the day</Label> : null} Article goes here</object>
       </Segment>
     )} else {
       return null

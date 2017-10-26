@@ -43,8 +43,17 @@ class Homepage extends React.Component {
     return rightNote.id
   }
 
+  checkWindowSize = () => {
+    const calcWidth = window.innerWidth / 2.03
+    const calcHeight = window.innerHeight / 1.3
+    return { width: calcWidth, height: calcHeight }
+  }
+
   render(){
-    console.log(window.height);
+    console.log(this.checkWindowSize());
+    const windowDimensions = this.checkWindowSize()
+    console.log(windowDimensions);
+
     const { articles } = this.props
     const { navigating } = this.state
     if(navigating && this.props.currentNote.note){
