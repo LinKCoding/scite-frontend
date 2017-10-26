@@ -39,8 +39,6 @@ class NoteItem extends React.Component {
   }
 
   render(){
-    console.log(this.props.currentNote.note);
-
     if(this.props.currentNote.note){
       const relevantLexicon = this.props.lexicon.filter((word) => {
         return word.note_id === parseInt(this.props.currentNote.note.id, 10)

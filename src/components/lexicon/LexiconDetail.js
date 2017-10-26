@@ -60,8 +60,8 @@ class LexiconDetail extends React.Component{
             <Segment clearing>
               <h2> Editing: "{word}"</h2>
               <Form onSubmit={this.handleSubmit}>
-                <Form.Input label='Word' type='text' name="word" onChange={this.handleChange} value={this.state.word}/>
-                <Form.TextArea label='Definition' type='textarea' name="definition" onChange={this.handleChange} value={this.state.definition}/>
+                <Form.Input label='Word' type='text' name="word" onChange={this.handleChange} value={this.state.word} required/>
+                <Form.TextArea label='Definition' type='textarea' name="definition" onChange={this.handleChange} value={this.state.definition} required/>
                 <Button color="teal" type="submit" className="ui right floated"> Change word </Button>
                 <Link to={`/notes/${note_id}`}>Go back to your note</Link>
               </Form>

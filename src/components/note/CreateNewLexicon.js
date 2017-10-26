@@ -17,7 +17,6 @@ class CreateNewLexicon extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    console.log(this.props);
     this.props.addingWord(this.state, this.props.noteID)
     this.setState({
       word: "",
@@ -31,8 +30,8 @@ class CreateNewLexicon extends React.Component {
       <Form onSubmit={this.handleSubmit}>
         <strong>Add to your Lexicon</strong>
         <Form.Group floated>
-          <Form.Input onChange={this.handleChange} name="word" value={this.state.word} placeholder="word goes here..." width={4}/>
-          <Form.Input onChange={this.handleChange} name="definition" value={this.state.definition} placeholder="definition goes here..." width={11}/>
+          <Form.Input onChange={this.handleChange} name="word" value={this.state.word} placeholder="word goes here..." width={4} required/>
+          <Form.Input onChange={this.handleChange} name="definition" value={this.state.definition} placeholder="definition goes here..." width={11} required/>
           <Button color="blue" type="submit" compact> Grasp </Button>
         </Form.Group>
       </Form>
