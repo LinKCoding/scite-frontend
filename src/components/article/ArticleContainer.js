@@ -26,19 +26,9 @@ class ArticleContainer extends React.Component {
       )
     } else {
       return (
-        <Grid>
-          <Grid.Column width={1}>
-          </Grid.Column>
-          <Grid.Column width={14}>
-
-              <Dimmer active>
-                <Loader>Loading</Loader>
-              </Dimmer>
-
-          </Grid.Column>
-          <Grid.Column width={1}>
-          </Grid.Column>
-        </Grid>
+        <Dimmer active>
+          <Loader size="large">Loading</Loader>
+        </Dimmer>
       )
     }
   }

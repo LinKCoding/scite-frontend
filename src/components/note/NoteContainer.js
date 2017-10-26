@@ -50,21 +50,9 @@ class NoteContainer extends React.Component {
       }
     } else {
       return (
-        <Grid>
-          <Grid.Column width={1}>
-          </Grid.Column>
-          <Grid.Column width={14}>
-            <Grid.Row></Grid.Row>
-            <Grid.Row>
-              <Dimmer active>
-                <Loader>Loading</Loader>
-              </Dimmer>
-            </Grid.Row>
-            <Grid.Row></Grid.Row>
-          </Grid.Column>
-          <Grid.Column width={1}>
-          </Grid.Column>
-        </Grid>
+        <Dimmer active>
+          <Loader size="large">Loading</Loader>
+        </Dimmer>
       )
     }
   }

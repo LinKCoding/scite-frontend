@@ -1,5 +1,5 @@
 import React from 'react'
-import { Segment } from 'semantic-ui-react'
+import { Segment, Label } from 'semantic-ui-react'
 
 class ArticleWindow extends React.Component {
 
@@ -8,7 +8,8 @@ class ArticleWindow extends React.Component {
       const { height, width } = this.props.dimensions
     return(
       <Segment id="article">
-        <object height={height} width={width} data={this.props.article.url} >Article goes here</object>
+
+        <object height={height} width={width} data={this.props.article.url} > {this.props.homepage ?  <Label as='a' color='teal' ribbon>Article of the day</Label> : null} Article goes here</object>
       </Segment>
     )} else {
       return null
