@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { fetchedLexicon } from '../../actions/lexicon'
 import { fetchNotes } from '../../actions/note'
 import { Route, Link } from 'react-router-dom'
-import { Grid } from 'semantic-ui-react'
+import { Grid, Segment } from 'semantic-ui-react'
 
 class NoteContainer extends React.Component {
   componentDidMount(){
@@ -18,7 +18,17 @@ class NoteContainer extends React.Component {
     if(notes.fetchedNotes) {
       if(notes.notes.length === 0) {
         return(
-          <h3> looks like you don't have any notes yet, check out an <Link to="/articles">article</Link> and create one!</h3>
+          <Grid>
+            <Grid.Column width={1}>
+            </Grid.Column>
+            <Grid.Column width={14}>
+              <Segment>
+                <h3> looks like you don't have any notes yet, check out an <Link to="/articles">article</Link> and create one!</h3>
+              </Segment>
+            </Grid.Column>
+            <Grid.Column width={1}>
+            </Grid.Column>
+          </Grid>
         )
       } else {
         return(
