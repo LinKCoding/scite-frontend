@@ -6,7 +6,7 @@ import Dictionary from '../Dictionary'
 import PlainEditor from './PlainEditor'
 import NoteLexicon from './NoteLexicon'
 import CreateNewLexicon from './CreateNewLexicon'
-import { Grid, Container, Segment, Image, Header } from 'semantic-ui-react'
+import { Grid, Container, Segment, Image, Header, Dimmer, Loader } from 'semantic-ui-react'
 
 class NoteItem extends React.Component {
 
@@ -89,7 +89,7 @@ class NoteItem extends React.Component {
       )
     } else {
       return(
-        <h3> loading...</h3>
+      null
       )
     }
   }

@@ -3,7 +3,7 @@ import ArticleList from './ArticleList'
 import { connect } from 'react-redux'
 import { fetchArticles } from '../../actions/article'
 import { fetchNotes } from '../../actions/note'
-import { Grid } from 'semantic-ui-react'
+import { Grid, Segment, Dimmer, Loader } from 'semantic-ui-react'
 
 
 class ArticleContainer extends React.Component {
@@ -26,7 +26,19 @@ class ArticleContainer extends React.Component {
       )
     } else {
       return (
-        <h3>loading...</h3>
+        <Grid>
+          <Grid.Column width={1}>
+          </Grid.Column>
+          <Grid.Column width={14}>
+
+              <Dimmer active>
+                <Loader>Loading</Loader>
+              </Dimmer>
+
+          </Grid.Column>
+          <Grid.Column width={1}>
+          </Grid.Column>
+        </Grid>
       )
     }
   }

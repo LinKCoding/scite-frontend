@@ -15,6 +15,7 @@ class Navbar extends React.Component {
   logOut = (e) => {
     e.preventDefault()
     localStorage.removeItem('jwt')
+    localStorage.removeItem('name')
     this.props.logOut()
     this.props.history.push("/login")
   }
@@ -36,9 +37,16 @@ class Navbar extends React.Component {
           <Menu.Item name='notes' active={activeItem === 'notes'} onClick={this.handleItemClick}>
             <NavLink to="/notes"> Notes </NavLink>
           </Menu.Item>
-          <Menu.Item position="right">
-            <NavLink to="/" onClick={this.logOut}> Logout </NavLink>
-          </Menu.Item>
+          <Menu.Menu position="right">
+            <Menu.Item >
+              <h5>
+                Hi, {localStorage.getItem('name')}
+              </h5>
+            </Menu.Item>
+            <Menu.Item >
+              <NavLink to="/" onClick={this.logOut}> Logout </NavLink>
+            </Menu.Item>
+          </Menu.Menu>
         </Menu>
       )
     } else {

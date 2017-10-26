@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { fetchedLexicon } from '../../actions/lexicon'
 import { fetchNotes } from '../../actions/note'
 import { Route, Link } from 'react-router-dom'
-import { Grid, Segment } from 'semantic-ui-react'
+import { Grid, Segment, Dimmer, Loader } from 'semantic-ui-react'
 
 class NoteContainer extends React.Component {
   componentDidMount(){
@@ -49,7 +49,23 @@ class NoteContainer extends React.Component {
         )
       }
     } else {
-      return <h3>loading</h3>
+      return (
+        <Grid>
+          <Grid.Column width={1}>
+          </Grid.Column>
+          <Grid.Column width={14}>
+            <Grid.Row></Grid.Row>
+            <Grid.Row>
+              <Dimmer active>
+                <Loader>Loading</Loader>
+              </Dimmer>
+            </Grid.Row>
+            <Grid.Row></Grid.Row>
+          </Grid.Column>
+          <Grid.Column width={1}>
+          </Grid.Column>
+        </Grid>
+      )
     }
   }
 }

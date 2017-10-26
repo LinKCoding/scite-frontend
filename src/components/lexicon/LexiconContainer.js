@@ -4,7 +4,7 @@ import LexiconDetail from './LexiconDetail'
 import { Route, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { fetchedLexicon } from '../../actions/lexicon'
-import { Grid, Segment } from 'semantic-ui-react'
+import { Grid, Segment, Dimmer, Loader } from 'semantic-ui-react'
 
 class LexiconContainer extends React.Component {
 
@@ -51,7 +51,19 @@ class LexiconContainer extends React.Component {
       }
     } else {
       return (
-        <h3> loading </h3>
+        <Grid>
+          <Grid.Column width={1}>
+          </Grid.Column>
+          <Grid.Column width={14}>
+
+              <Dimmer active>
+                <Loader>Loading</Loader>
+              </Dimmer>
+
+          </Grid.Column>
+          <Grid.Column width={1}>
+          </Grid.Column>
+        </Grid>
       )
     }
   }

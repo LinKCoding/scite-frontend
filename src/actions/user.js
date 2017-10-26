@@ -1,7 +1,7 @@
-export function loggedIn(user_id){
+export function loggedIn(user_first_name){
   return {
     type: "LOGGED_IN",
-    payload: user_id
+    payload: user_first_name
   }
 }
 
@@ -75,7 +75,8 @@ export function login(user){
     .then(userInfo => {
 
       localStorage.setItem('jwt', userInfo.jwt)
-      dispatch(loggedIn(userInfo.user_id))
+      localStorage.setItem('name', userInfo.user_first_name)
+      dispatch(loggedIn(userInfo.user_first_name))
     })
     .then(() => {
       user.history.push("/")
