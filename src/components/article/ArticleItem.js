@@ -20,9 +20,10 @@ class ArticleItem extends React.Component {
     const { id, name, thumbnail, created_at } = this.props.info
     const formated_date = created_at.split("T")[0]
     const checkForNote = this.props.noteList.some(note => note.article_id === id)
-    const selectedNote = this.props.noteList.filter((note) => note.article_id)[0]
+    const selectedNote = this.props.noteList.filter((note) => note.article_id === id)[0]
 
     console.log(this.props);
+    console.log(selectedNote);
     if(this.state.navigating && this.props.note.note ){
       console.log(this.props.note);
       return <Redirect to={`/notes/${this.props.note.note.id}`} />
