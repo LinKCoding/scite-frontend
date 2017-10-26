@@ -57,7 +57,8 @@ export function setNote(noteID){
   }
 }
 
-export function createNote(article){
+export function createNote(allInfo){
+
   return function(dispatch){
     fetch('http://localhost:3000/api/v1/notes/', {
       method: 'POST',
@@ -66,9 +67,10 @@ export function createNote(article){
         'Authorization': `Bearer ${localStorage.getItem('jwt')}`
       },
       body: JSON.stringify({
-        'article_id': article.id
+        'article_id': allInfo.id
       })
-    }).then(res => res.json())
+    })
+    .then(res => res.json())
     .then((note) => {
       dispatch(settingNote(note))
     })

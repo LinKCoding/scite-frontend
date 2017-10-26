@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { deleteLexicon } from '../../actions/lexicon'
 import { List, Button } from 'semantic-ui-react'
@@ -17,6 +17,7 @@ class NoteLexiconItem extends React.Component{
   }
 
   render(){
+
     const { word, definition, id } = this.props.word
     return(
       <List.Item>
@@ -41,4 +42,4 @@ function mapDispatchToProps(dispatch){
   }
 }
 
-export default connect(null, mapDispatchToProps)(NoteLexiconItem)
+export default withRouter(connect(null, mapDispatchToProps)(NoteLexiconItem))

@@ -4,9 +4,7 @@ import { Segment } from 'semantic-ui-react'
 class ArticleWindow extends React.Component {
 
   render() {
-
     if(this.props.article) {
-      console.log(this.props);
       const { height, width } = this.props.dimensions
     return(
       <Segment id="article">

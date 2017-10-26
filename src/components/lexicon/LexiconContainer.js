@@ -15,7 +15,6 @@ class LexiconContainer extends React.Component {
   render(){
     const { lexicon } = this.props
     if(lexicon.fetchedLexicon) {
-      console.log("first");
       if(lexicon.list.length === 0) {
         return <h3> Looks like your lexicon's empty, check out an <Link to="/articles">article</Link> and add to it!</h3>
       } else {
@@ -33,8 +32,9 @@ class LexiconContainer extends React.Component {
                 const word = lexicon.list.filter((word) => {
                   return word.id === parseInt(id, 10)
                 })[0]
+                const note = this.props.notes.filter(note => note.id === word.note_id)[0]
 
-                return <LexiconDetail routerProps={props} word={word}/>  }} />
+                return <LexiconDetail routerProps={props} word={word} note={note}/>   }} />
           </Grid>
         )
       }
@@ -56,8 +56,10 @@ function mapDispatchToProps(dispatch){
 
 function mapStateToProps(state){
   return {
-    lexicon: state.lexicon
+    lexicon: state.lexicon,
+    notes: state.note.notes
   }
 }
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(LexiconContainer)

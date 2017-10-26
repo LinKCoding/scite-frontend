@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, Redirect } from 'react-router-dom'
+import { Link, Redirect, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { createNote } from '../../actions/note'
 import { Table, Image, Button, Container } from 'semantic-ui-react'
@@ -22,10 +22,10 @@ class ArticleItem extends React.Component {
     const checkForNote = this.props.noteList.some(note => note.article_id === id)
     const selectedNote = this.props.noteList.filter((note) => note.article_id)[0]
 
-    // console.log(this.props);
-    if(this.state.navigating && this.props.note.note){
+    console.log(this.props);
+    if(this.state.navigating && this.props.note.note ){
       console.log(this.props.note);
-      return <Redirect to={`/notes/${this.props.note.note.id}`} push={true}/>
+      return <Redirect to={`/notes/${this.props.note.note.id}`} />
     } else {
       return(
         <Table.Row>
@@ -47,7 +47,8 @@ class ArticleItem extends React.Component {
 
 function mapStateToProps(state){
   return {
-    note: state.note.currentNote
+    note: state.note.currentNote,
+    fetching: state.note.fetchingNotes,
   }
 }
 
@@ -59,4 +60,4 @@ function mapDispatchToProps(dispatch){
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ArticleItem)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ArticleItem))

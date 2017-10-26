@@ -14,6 +14,10 @@ class LexiconDetail extends React.Component{
     changed: false,
   }
 
+  componentDidMount(){
+    this.props.settingNote(this.props.note)
+  }
+
   handleChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value
@@ -24,12 +28,13 @@ class LexiconDetail extends React.Component{
     return this.props.notes.filter(note => note.id === this.props.word.note_id)[0]
   }
 
+
+
   handleSubmit = (e) => {
     e.preventDefault()
     const { word, definition } = this.state
     this.props.updateLexicon({word, definition}, this.props.word.id)
-    console.log(this.findNote());
-    this.props.settingNote(this.props.word.id)
+    this.props.settingNote(this.props.note)
     this.setState({
       changed: true
     })
@@ -43,7 +48,8 @@ class LexiconDetail extends React.Component{
 
   render(){
     const { word, note_id } = this.props.word
-
+    console.log(note_id);
+    console.log(this.props.note);
     return(
       <Grid>
 
@@ -94,16 +100,3 @@ function mapStateToProps(state){
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(LexiconDetail)
-
-// <div>
-//   <h2> Editing  "{word}"</h2>
-//   <form onSubmit={this.handleSubmit}>
-//     <span>Word:</span>
-//     <input type="text" name="word" onChange={this.handleChange} value={this.state.word}/><br/>
-//     <span>Definition:</span>
-//     <input type="text" name="definition" onChange={this.handleChange} value={this.state.definition}/><br/>
-//     <input type="submit" />
-//   </form>
-//   <Link to={`/notes/${note_id}`}>Go back to your note</Link>
-//   <Dictionary />
-// </div>

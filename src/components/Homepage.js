@@ -44,7 +44,7 @@ class Homepage extends React.Component {
   }
 
   render(){
-
+    console.log(window.height);
     const { articles } = this.props
     const { navigating } = this.state
     if(navigating && this.props.currentNote.note){
@@ -54,16 +54,16 @@ class Homepage extends React.Component {
         <Grid centered columns={2} >
           <Grid.Row className="button-font">
             <Segment color="teal" inverted className="button-font">
-              <Header as='h3' textAlign='center' className="button-font">
+              <h3>
                 Article of the Day:
-              </Header>
+              </h3>
             </Segment>
           </Grid.Row>
 
           <Grid.Row>
             <Grid.Column>
               {articles.length !== 0 ?
-                <ArticleWindow  article={articles[articles.length - 1]} dimensions={{height:'600vh', width:'800vh'}} /> :
+                <ArticleWindow  article={articles[articles.length - 1]} dimensions={{height:'550vh', width:'700vh'}} /> :
                   <Dimmer active>
                     <Loader size='large'>Loading</Loader>
                   </Dimmer>
