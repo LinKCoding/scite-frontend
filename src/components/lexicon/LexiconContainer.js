@@ -4,7 +4,7 @@ import LexiconDetail from './LexiconDetail'
 import { Route, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { fetchedLexicon } from '../../actions/lexicon'
-import { Grid } from 'semantic-ui-react'
+import { Grid, Segment } from 'semantic-ui-react'
 
 class LexiconContainer extends React.Component {
 
@@ -16,7 +16,17 @@ class LexiconContainer extends React.Component {
     const { lexicon } = this.props
     if(lexicon.fetchedLexicon) {
       if(lexicon.list.length === 0) {
-        return <h3> Looks like your lexicon's empty, check out an <Link to="/articles">article</Link> and add to it!</h3>
+        return (<Grid>
+          <Grid.Column width={1}>
+          </Grid.Column>
+          <Grid.Column width={14}>
+            <Segment>
+              <h3> Looks like your lexicon's empty, check out an <Link to="/articles">article</Link> and add to it!</h3>
+            </Segment>
+          </Grid.Column>
+          <Grid.Column width={1}>
+          </Grid.Column>
+        </Grid>)
       } else {
         return(
           <Grid>

@@ -2,14 +2,23 @@ import React from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { deleteLexicon } from '../../actions/lexicon'
-import { List, Button } from 'semantic-ui-react'
+import { List, Button, Confirm } from 'semantic-ui-react'
 
 
 class NoteLexiconItem extends React.Component{
-  handleClick = () => {
-    const response = window.confirm("You're about to delete this from your lexicon, are you sure?")
-    {response ?
-    this.props.deleteLexicon(this.props.word.id) : null }
+  state = { open: false }
+
+  show = () => this.setState({ open: true })
+  handleConfirm = () => {
+    this.props.deleteLexicon(this.props.word.id)
+    this.setState({
+      open: false
+    })
+  }
+  handleCancel = () => {
+    this.setState({
+      open: false
+    })
   }
 
   handleRedirect = () => {
@@ -26,7 +35,13 @@ class NoteLexiconItem extends React.Component{
           <List.Description>
             {word} - {definition}
             <Button color="blue"  onClick={this.handleRedirect} size="mini" circular icon="write"></Button>
-            <Button color="red" onClick={this.handleClick} size="mini" circular icon="trash outline"></Button>
+            <Button color="red" onClick={this.show} size="mini" circular icon="trash outline"></Button>
+            <Confirm
+                content={`You're about to delete "${word}" from your lexicon, are you sure?`}
+                open={this.state.open}
+                onCancel={this.handleCancel}
+                onConfirm={this.handleConfirm}
+              />
           </List.Description>
         </List.Content>
       </List.Item>
