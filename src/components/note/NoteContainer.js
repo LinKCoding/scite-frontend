@@ -40,11 +40,15 @@ class NoteContainer extends React.Component {
             </Grid.Column>
             <Grid.Column width={1}>
             </Grid.Column>
-
-            <Route path="/notes/:id" render={(props)=> {
-                const id = props.match.params.id
-
-                return <NoteItem routerProps={props} lexicon={lexicon} noteID={id}/>  }} />
+            {this.props.notes.fetchedNotes ?
+            <Route path="/notes/:id" render={(routerProps)=> {
+                const id = routerProps.match.params.id
+                const correctNote = notes.notes.find(note => {
+                  return note.id == id
+                })
+                console.log(correctNote);
+                return <NoteItem routerProps={routerProps} lexicon={lexicon} noteID={id} correctNote={correctNote}/>  }} />
+                : null }
           </Grid>
         )
       }

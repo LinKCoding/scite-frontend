@@ -89,18 +89,15 @@ const plugins = [inlineToolbarPlugin];
 class PlainEditor extends Component {
   constructor(props) {
       super(props);
+      console.log(this.props.noteContent);
       this.state = {
-        editorState: EditorState.createWithContent(convertFromRaw(JSON.parse(this.props.currentNote.note.content)))
+        editorState: EditorState.createWithContent(convertFromRaw(JSON.parse(this.props.noteContent)))
       }
     }
 
-  componentDidMount(){
-    this.props.setNote(this.props.noteID)
-  }
-
 
   saveContent = debounce((content) => {
-    fetch(`http://localhost:3000/api/v1/notes/${this.props.noteID}`, {
+    fetch(`http://localhost:3000/api/v1/notes/${this.props.correctNote.id}`, {
       method: 'POST',
       headers: new Headers({
         'Content-Type': 'application/json',
@@ -125,6 +122,7 @@ class PlainEditor extends Component {
   };
 
   render() {
+
     return (
       <Segment className="editor" onClick={this.focus}>
         <Editor
@@ -141,18 +139,5 @@ class PlainEditor extends Component {
   }
 }
 
-function mapDispatchToProps(dispatch){
-  return {
-    setNote: (noteID) => {
-      dispatch(setNote(noteID))
-    }
-  }
-}
 
-function mapStateToProps(state){
-  return {
-    currentNote: state.note.currentNote
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(PlainEditor)
+export default PlainEditor
