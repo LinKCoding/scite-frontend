@@ -4,7 +4,7 @@ import './Homepage.css'
 import { connect } from 'react-redux'
 import { fetchArticlesAndSetLatest } from '../actions/article'
 import { createNote, fetchNotes } from '../actions/note'
-import { Link, Redirect } from 'react-router-dom'
+import { Link, Redirect, withRouter } from 'react-router-dom'
 import { Grid, Header, Segment, Button, Dimmer, Loader } from 'semantic-ui-react'
 
 
@@ -23,10 +23,7 @@ class Homepage extends React.Component {
 
   handleClick = () => {
     const latestArticle =  this.props.articles[this.props.articles.length-1]
-    this.props.createNote(latestArticle)
-    this.setState({
-      navigating: true
-    })
+    this.props.createNote(latestArticle, this.props.history)
   }
 
   checkForNote = () => {
@@ -108,8 +105,8 @@ function mapDispatchToProps(dispatch){
     fetchArticlesAndSetLatest: () => {
       dispatch(fetchArticlesAndSetLatest())
     },
-    createNote: (article)=> {
-      dispatch(createNote(article))
+    createNote: (article, history)=> {
+      dispatch(createNote(article, history))
     },
     fetchNotes: () => {
       dispatch(fetchNotes())
@@ -117,31 +114,4 @@ function mapDispatchToProps(dispatch){
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Homepage)
-
-// <ArticleWindow  article={ articles.length !== 0 ? articles[articles.length - 1] : null}/>
-
-// <Grid centered columns={2}>
-//   <Grid.Row centered columns={2} >
-//     <Grid.Column>
-//       <span> ARTICLE OF THE DAY </span>
-//     </Grid.Column>
-//   </Grid.Row>
-//
-//   <Grid.Row>
-//     <Grid.Column>
-//       <ArticleWindow  article={ articles.length !== 0 ? articles[articles.length - 1] : null}/>
-//     </Grid.Column>
-//   </Grid.Row>
-//
-  // <Grid.Row>
-  //   {this.checkForNote() ?
-  //     <Grid.Column>
-  //       <Link to={`/notes/${this.findNoteID()}`}>Edit Note</Link>
-  //     </Grid.Column> :
-  //     <Grid.Column>
-  //       <button onClick={this.handleClick}> Start on a new note! </button>
-  //     </Grid.Column>
-  //   }
-  // </Grid.Row>
-// </Grid>
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Homepage))
