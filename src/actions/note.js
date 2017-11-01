@@ -58,7 +58,7 @@ export function setNote(noteID){
 }
 
 export function createNote(allInfo){
-
+  console.log("HISTORY", allInfo.history);
   return function(dispatch){
     fetch('http://localhost:3000/api/v1/notes/', {
       method: 'POST',
@@ -72,8 +72,12 @@ export function createNote(allInfo){
     })
     .then(res => res.json())
     .then((note) => {
+      console.log("NOTE OBJECT", note);
+      console.log("NOTE ID", note.id);
       dispatch(settingNote(note))
+      allInfo.history.push(`/notes/${note.note.id}`)
     })
+
   }
 }
 

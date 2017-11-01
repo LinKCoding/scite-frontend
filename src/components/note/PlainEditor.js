@@ -89,7 +89,6 @@ const plugins = [inlineToolbarPlugin];
 class PlainEditor extends Component {
   constructor(props) {
       super(props);
-      console.log(this.props.noteContent);
       this.state = {
         editorState: EditorState.createWithContent(convertFromRaw(JSON.parse(this.props.noteContent)))
       }
@@ -97,6 +96,7 @@ class PlainEditor extends Component {
 
 
   saveContent = debounce((content) => {
+    console.log("WE'RE NEVER GOING TO FIND THIS", this.props);
     fetch(`http://localhost:3000/api/v1/notes/${this.props.correctNote.id}`, {
       method: 'POST',
       headers: new Headers({

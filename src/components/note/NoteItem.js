@@ -43,8 +43,7 @@ class NoteItem extends React.Component {
       const relevantLexicon = this.props.lexicon.filter((word) => {
         return word.note_id === parseInt(this.props.currentNote.note.id, 10)
       })
-      const convertedContent = this.props.correctNote.content.replace(/=>/g, ":")
-      console.log(convertedContent);
+      const convertedContent = this.props.correctNote && this.props.correctNote.content.replace(/=>/g, ":")
       return(
         <Grid >
           <Grid.Row> {/*Checking*/}
@@ -56,7 +55,7 @@ class NoteItem extends React.Component {
 
             </Grid.Column>
             <Grid.Column width={5}>
-              <PlainEditor noteID={this.props.correctNote.id} correctNote={this.props.correctNote}  noteContent={convertedContent}/>
+              <PlainEditor noteID={this.props.currentNote.note.id} correctNote={this.props.correctNote}  noteContent={ convertedContent || this.props.currentNote.note.content}/>
             </Grid.Column>
             <Grid.Column width={1}>
             </Grid.Column>

@@ -46,7 +46,7 @@ class NoteContainer extends React.Component {
                 const correctNote = notes.notes.find(note => {
                   return note.id == id
                 })
-                console.log(correctNote);
+
                 return <NoteItem routerProps={routerProps} lexicon={lexicon} noteID={id} correctNote={correctNote}/>  }} />
                 : null }
           </Grid>

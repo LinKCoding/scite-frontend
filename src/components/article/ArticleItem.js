@@ -10,7 +10,8 @@ class ArticleItem extends React.Component {
   }
 
   handleClick = () => {
-    this.props.createNote(this.props.info)
+    console.log(this.props.history);
+    this.props.createNote({...this.props.info, history: this.props.history})
     this.setState({
       navigating: true
     })
