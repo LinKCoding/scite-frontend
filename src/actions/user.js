@@ -113,6 +113,7 @@ export function signUp(user){
     .then((res) => res.json())
     .then((userInfo) => {
       localStorage.setItem('jwt', userInfo.jwt)
+      localStorage.setItem('name', userInfo.user_first_name)
       dispatch(loggedIn(userInfo.user_id))
     })
     .then(() => {

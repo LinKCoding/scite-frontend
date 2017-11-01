@@ -72,6 +72,7 @@ export function createNote(allInfo, history){
     .then(res => res.json())
     .then((note) => {
       console.log(history);
+      console.log(note);
       dispatch(settingNote(note))
       history.push(`/notes/${note.note.id}`)
     })
