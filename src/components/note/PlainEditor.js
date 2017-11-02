@@ -96,7 +96,6 @@ class PlainEditor extends Component {
 
 
   saveContent = debounce((content) => {
-    console.log("WE'RE NEVER GOING TO FIND THIS", this.props);
     fetch(`http://localhost:3000/api/v1/notes/${this.props.correctNote.id}`, {
       method: 'POST',
       headers: new Headers({
@@ -132,8 +131,6 @@ class PlainEditor extends Component {
           ref={(element) => { this.editor = element; }}
         />
         <InlineToolbar />
-
-
       </Segment>
     );
   }
