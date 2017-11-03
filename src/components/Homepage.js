@@ -41,12 +41,12 @@ class Homepage extends React.Component {
   }
 
   render(){
-    console.log(window.height);
     const { articles } = this.props
     const { navigating } = this.state
-    if(navigating && this.props.currentNote.note){
-      return <Redirect to={`/notes/${this.props.currentNote.note.id}`} push={true}/>
-    } else if(this.props.allNotes.fetchedNotes && this.props.articles[0]){
+    // if(navigating && this.props.currentNote.note){
+    //   return <Redirect to={`/notes/${this.props.currentNote.note.id}`} push={true}/>
+    // }
+    if(this.props.allNotes.fetchedNotes && this.props.articles[0]){
       return (
         <Grid centered columns={2} >
           <Grid.Row className="button-font">
@@ -58,9 +58,9 @@ class Homepage extends React.Component {
           </Grid.Row>
 
           <Grid.Row>
-            <Grid.Column>
+            <Grid.Column ref="homepage">
               {articles.length !== 0 ?
-                <ArticleWindow article={articles[articles.length - 1]} dimensions={{height:'550vh', width:'700vh'}} /> :
+                <ArticleWindow article={articles[articles.length - 1]} height="500vh"/> :
                   <Dimmer active>
                     <Loader size='large'>Loading</Loader>
                   </Dimmer>
