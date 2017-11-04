@@ -10,16 +10,11 @@ import { Grid, Header, Segment, Button, Dimmer, Loader } from 'semantic-ui-react
 
 
 class Homepage extends React.Component {
-  state = {
-    navigating: false,
-  }
 
   componentDidMount(){
     this.props.fetchArticlesAndSetLatest()
     this.props.fetchNotes()
   }
-
-
 
   handleClick = () => {
     const latestArticle =  this.props.articles[this.props.articles.length-1]
@@ -42,17 +37,14 @@ class Homepage extends React.Component {
 
   render(){
     const { articles } = this.props
-    const { navigating } = this.state
-    // if(navigating && this.props.currentNote.note){
-    //   return <Redirect to={`/notes/${this.props.currentNote.note.id}`} push={true}/>
-    // }
+
     if(this.props.allNotes.fetchedNotes && this.props.articles[0]){
       return (
         <Grid centered columns={2} >
           <Grid.Row className="button-font">
             <Segment color="teal" inverted className="button-font">
               <h3>
-                Article of the Day:
+                Article of the Day: "{articles[articles.length-1].name}"
               </h3>
             </Segment>
           </Grid.Row>

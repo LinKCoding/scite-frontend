@@ -20,7 +20,7 @@ import editorStyles from './editorStyles.css';
 import debounce from 'lodash/debounce';
 import { connect } from 'react-redux'
 import { setNote } from '../../actions/note'
-import { Segment } from 'semantic-ui-react'
+import { Segment, Divider } from 'semantic-ui-react'
 
 class HeadlinesPicker extends Component {
   componentDidMount() {
@@ -121,9 +121,11 @@ class PlainEditor extends Component {
   };
 
   render() {
-
+    console.log(window.innerWidth);
     return (
-      <Segment className="editor" onClick={this.focus}>
+      <Segment className="editor" onClick={this.focus} style={{height:"100%", width:"100%"  }}>
+
+        <Divider horizontal>Notes</Divider>
         <Editor
           editorState={this.state.editorState}
           onChange={this.onChange}

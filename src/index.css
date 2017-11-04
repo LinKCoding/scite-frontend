@@ -2,7 +2,9 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Alegreya SC','Changa One', sans-serif;
-  background-image: url('/../earth.jpg')
+  background-image: url('/../earth.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 h2, h3, h5 {
@@ -25,4 +27,8 @@ a {
 
 #article {
   padding: 3%;
+}
+
+#editorSegment {
+  min-width: 100%;
 }
