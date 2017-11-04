@@ -90,6 +90,7 @@
   /*min-height: 59.5vh;*/
   min-height: 51vh;
   max-height: 51vh;
+  overflow: auto;
   /*59.5 vh for maxscreen 1080p*/
   min-width: 100%;
 }

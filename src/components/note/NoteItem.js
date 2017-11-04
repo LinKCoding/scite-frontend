@@ -11,7 +11,6 @@ import { Grid, Container, Segment, Image, Header, Dimmer, Loader } from 'semanti
 class NoteItem extends React.Component {
 
   componentDidMount(){
-    console.log("MOUNTING");
     this.props.setNote(this.props.routerProps.match.params.id)
   }
 
@@ -39,7 +38,7 @@ class NoteItem extends React.Component {
   }
 
   render(){
-    console.log(window.innerWidth/16);
+
     if(this.props.currentNote.note){
       const relevantLexicon = this.props.lexicon.filter((word) => {
         return word.note_id === parseInt(this.props.currentNote.note.id, 10)

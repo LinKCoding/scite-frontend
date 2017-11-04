@@ -121,7 +121,7 @@ class PlainEditor extends Component {
   };
 
   render() {
-    console.log(window.innerWidth);
+    // console.log(this.limitWords());
     return (
       <Segment className="editor" onClick={this.focus} style={{height:"100%", width:"100%"  }}>
 
