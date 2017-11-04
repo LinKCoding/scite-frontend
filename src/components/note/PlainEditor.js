@@ -125,7 +125,7 @@ class PlainEditor extends Component {
     return (
       <Segment className="editor" onClick={this.focus} style={{height:"100%", width:"100%"  }}>
 
-        <Divider horizontal>Notes</Divider>
+        <Divider horizontal>SCITE</Divider>
         <Editor
           editorState={this.state.editorState}
           onChange={this.onChange}

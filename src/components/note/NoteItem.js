@@ -52,7 +52,7 @@ class NoteItem extends React.Component {
             </Grid.Column>
             <Grid.Column width={9}>
 
-                <ArticleWindow article={this.props.currentNote.article ? this.props.currentNote.article : null } height='450vh'/>
+                <ArticleWindow article={this.props.currentNote.article ? this.props.currentNote.article : null } height={`${window.innerHeight*5/9}vh`}/>
 
             </Grid.Column>
             <Grid.Column width={5}>

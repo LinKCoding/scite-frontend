@@ -45,6 +45,7 @@ class Homepage extends React.Component {
             <Segment color="teal" inverted className="button-font">
               <h3>
                 Article of the Day: "{articles[articles.length-1].name}"
+                height is {window.innerHeight}
               </h3>
             </Segment>
           </Grid.Row>
@@ -52,7 +53,7 @@ class Homepage extends React.Component {
           <Grid.Row>
             <Grid.Column ref="homepage">
               {articles.length !== 0 ?
-                <ArticleWindow article={articles[articles.length - 1]} height="500vh"/> :
+                <ArticleWindow article={articles[articles.length - 1]} height={`${window.innerHeight*2/3}vh`}/> :
                   <Dimmer active>
                     <Loader size='large'>Loading</Loader>
                   </Dimmer>
