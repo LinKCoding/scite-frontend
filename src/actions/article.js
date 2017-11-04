@@ -21,7 +21,7 @@ export function settingArticle(article){
 export function fetchArticles(){
   return function(dispatch) {
     dispatch(fetchingArticles())
-    fetch("https://scite-backend.herokuapp.com/api/v1/", {
+    fetch("https://scite-backend.herokuapp.com/api/v1/articles", {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
