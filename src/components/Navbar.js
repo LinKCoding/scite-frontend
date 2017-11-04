@@ -26,7 +26,7 @@ class Navbar extends React.Component {
       return(
         <Menu color='teal' inverted>
           <Menu.Item name='home' active={activeItem === 'home'} onClick={this.handleItemClick}>
-            <NavLink to="/"><img src="public/scite-icon.png" style={{width:'29px',height:'20px'}} /></NavLink>
+            <NavLink to="/"><img src="./public/scite-icon.png" style={{width:'29px',height:'20px'}} /></NavLink>
           </Menu.Item>
           <Menu.Item name='articles' active={activeItem === 'articles'} onClick={this.handleItemClick}>
             <NavLink to="/articles"> Articles </NavLink>
