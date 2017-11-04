@@ -14,7 +14,7 @@ export function fetchedNotes(notes){
 export function fetchNotes(){
   return function(dispatch){
     dispatch(fetchingNotes())
-    fetch("http://localhost:3000/api/v1//usernotes", {
+    fetch("https://scite-backend.herokuapp.com/api/v1/usernotes", {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -39,7 +39,7 @@ export function setNote(noteID){
   // debugger
   return function(dispatch){
     dispatch(fetchingNotes())
-    fetch(`http://localhost:3000/api/v1/notes/${noteID}`, {
+    fetch(`https://scite-backend.herokuapp.com/api/v1/notes/${noteID}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -59,7 +59,7 @@ export function setNote(noteID){
 
 export function createNote(allInfo, history){
   return function(dispatch){
-    fetch('http://localhost:3000/api/v1/notes/', {
+    fetch('https://scite-backend.herokuapp.com/api/v1/notes/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -81,7 +81,7 @@ export function createNote(allInfo, history){
 
 export function deleteNote(noteID){
   return function(dispatch){
-    fetch(`http://localhost:3000/api/v1/notes/${noteID}`, {
+    fetch(`https://scite-backend.herokuapp.com/api/v1/notes/${noteID}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',

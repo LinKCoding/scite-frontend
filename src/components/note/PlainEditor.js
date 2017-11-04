@@ -96,7 +96,7 @@ class PlainEditor extends Component {
 
 
   saveContent = debounce((content) => {
-    fetch(`http://localhost:3000/api/v1/notes/${this.props.correctNote.id}`, {
+    fetch(`https://scite-backend.herokuapp.com/api/v1/notes/${this.props.correctNote.id}`, {
       method: 'POST',
       headers: new Headers({
         'Content-Type': 'application/json',

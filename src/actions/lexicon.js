@@ -14,7 +14,7 @@ export function setLexicon(list){
 export function fetchedLexicon(){
   return function(dispatch){
     dispatch(fetchingLexicon())
-    fetch('http://localhost:3000/api/v1/lexicon/', {
+    fetch('https://scite-backend.herokuapp.com/api/v1/lexicon/', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -30,7 +30,7 @@ export function fetchedLexicon(){
 export function updateLexicon(word, lexiconID){
   return function(dispatch){
     dispatch(fetchingLexicon())
-    fetch(`http://localhost:3000/api/v1/lexicon/${lexiconID}`, {
+    fetch(`https://scite-backend.herokuapp.com/api/v1/lexicon/${lexiconID}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -50,7 +50,7 @@ export function updateLexicon(word, lexiconID){
 export function deleteLexicon(lexiconID){
   return function(dispatch){
     dispatch(fetchingLexicon())
-    fetch(`http://localhost:3000/api/v1/lexicon/${lexiconID}`, {
+    fetch(`https://scite-backend.herokuapp.com/api/v1/lexicon/${lexiconID}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
@@ -72,7 +72,7 @@ export function addWord(word){
 
 export function addingWord(word, noteID){
   return function(dispatch){
-    fetch('http://localhost:3000/api/v1/lexicon/', {
+    fetch('https://scite-backend.herokuapp.com/api/v1/lexicon/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

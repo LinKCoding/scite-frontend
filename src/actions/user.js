@@ -55,7 +55,7 @@ export function login(user){
   console.log(user)
   return function(dispatch){
     dispatch(fetchingAccount())
-    fetch("http://localhost:3000/api/v1/login", {
+    fetch("https://scite-backend.herokuapp.com/api/v1/login", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -89,10 +89,9 @@ export function login(user){
 
 
 export function signUp(user){
-  console.log(user);
   return function(dispatch){
     dispatch(fetchingAccount())
-    fetch("http://localhost:3000/api/v1/users", {
+    fetch("https://scite-backend.herokuapp.com/api/v1/users", {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

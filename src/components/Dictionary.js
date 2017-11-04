@@ -12,7 +12,7 @@ class Dictionary extends React.Component{
   handleSubmit = (e) => {
     const trimmedWord = this.state.word.trim()
     e.preventDefault()
-    fetch(`http://localhost:3000/api/v1/dictionary`, {
+    fetch(`https://scite-backend.herokuapp.com/api/v1/dictionary`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

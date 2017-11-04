@@ -21,7 +21,7 @@ export function settingArticle(article){
 export function fetchArticles(){
   return function(dispatch) {
     dispatch(fetchingArticles())
-    fetch("http://localhost:3000/api/v1/articles", {
+    fetch("https://scite-backend.herokuapp.com/api/v1/", {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
@@ -37,7 +37,7 @@ export function fetchArticles(){
   export function fetchArticlesAndSetLatest(){
     return function(dispatch) {
       dispatch(fetchingArticles())
-      fetch("http://localhost:3000/api/v1/articles", {
+      fetch("https://scite-backend.herokuapp.com/api/v1/articles", {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'
@@ -55,7 +55,7 @@ export function fetchArticles(){
 export function setArticle(noteID){
   return function(dispatch){
     dispatch(fetchingArticles())
-    fetch(`http://localhost:3000/api/v1/note/${noteID}`, {
+    fetch(`https://scite-backend.herokuapp.com/api/v1/note/${noteID}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
