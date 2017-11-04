@@ -17,7 +17,7 @@ class NoteList extends React.Component {
             </Table.Row>
           </Table.Header>
           <Table.Body>
-            {this.props.notes.map((note)=>{ return <NoteDetail info={note} />})}
+            {this.props.notes.map((note, index)=>{ return <NoteDetail key={`note-${index}`} info={note} />})}
           </Table.Body>
         </Table>
 

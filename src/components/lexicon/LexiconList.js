@@ -24,7 +24,7 @@ class LexiconList extends React.Component {
           </Table.Header>
           <Table.Body>
             {
-              this.props.lexicon.list.map( (word,index) => {
+              this.props.lexicon.list.map((word, index) => {
                 return <LexiconItem key={`lexicon-${index}`} word={word} />
               })
             }
