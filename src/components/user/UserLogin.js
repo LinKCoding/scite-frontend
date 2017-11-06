@@ -7,8 +7,8 @@ import './Login.css'
 
 class UserLogin extends React.Component {
   state = {
-    email: "",
-    password: "",
+    email: "demo",
+    password: "demo",
   }
 
   handleChange = (e) => {

@@ -19,6 +19,7 @@ Then:
 $ yarn add
 $ yarn start
 ```
+Note: if you're also running the rails server locally there can be a conflict of ports. You can start the rails server first and let yarn take care of selecting another port or manually change it for either the rails server or for this app.
 
 You can also check out: https://scite.herokuapp.com for an up and running demo.
 Please note due to the time it takes for backend to start up after sleeping, the request may timeout. A simple refresh should solve the issue.
@@ -47,4 +48,4 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* Thanks to everyone who took the time to check out the site and gave feedback. Special thanks for my Flatiron cohort! 
+* Thanks to everyone who took the time to check out the site and gave feedback. Special thanks for my Flatiron cohort!
