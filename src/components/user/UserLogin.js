@@ -7,14 +7,19 @@ import './Login.css'
 
 class UserLogin extends React.Component {
   state = {
-    email: "demo",
-    password: "demo",
+    email: "",
+    password: "",
   }
 
   handleChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value
     })
+  }
+
+  handleDemo = () => {
+    const user = {email: "demo", password:"demo", history: this.props.history};
+    this.props.login(user)
   }
 
   handleSubmit = (event) => {
@@ -33,6 +38,7 @@ class UserLogin extends React.Component {
           <Form.Input type="password" label='Password:' placeholder='Password' name="password" onChange={this.handleChange} value={this.state.password} required/>
 
           <Button color="blue" type="submit" className="ui right floated"> Login </Button>
+          <Button color="orange" onClick={this.handleDemo} className="ui right floated"> Try as DEMO </Button>
         </Form>
       </Segment>
     )
