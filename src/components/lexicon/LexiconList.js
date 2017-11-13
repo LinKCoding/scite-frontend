@@ -1,11 +1,9 @@
 import React from 'react'
 import LexiconItem from './LexiconItem'
-import { connect } from 'react-redux'
-import { settingNote } from '../../actions/note'
-import { Table, Button } from 'semantic-ui-react'
+import { Table } from 'semantic-ui-react'
 
 class LexiconList extends React.Component {
-  // debugger
+
   render(){
     if (this.props.lexicon.list.error) {
       return(

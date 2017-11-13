@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import { login } from '../../actions/user'
-import { Redirect, withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import { Container, Button, Form, Segment, Message } from 'semantic-ui-react'
 import './Login.css'
 
@@ -18,15 +18,16 @@ class UserLogin extends React.Component {
   }
 
   handleDemo = () => {
-    const user = {email: "demo", password:"demo", history: this.props.history};
-    this.props.login(user)
+    this.setState({
+      email: "demo",
+      password: "demo"
+    })
+    this.props.login(this.state, this.props.history)
   }
 
   handleSubmit = (event) => {
     event.preventDefault()
-    const { email, password } = this.state
-    const user = {email, password, history: this.props.history};
-    this.props.login(user)
+    this.props.login(this.state, this.props.history)
   }
 
   loginForm = () => {
@@ -69,8 +70,8 @@ class UserLogin extends React.Component {
 
 function mapDispatchToProps(dispatch){
   return {
-    login: (user) => {
-      dispatch(login(user))
+    login: (user, history) => {
+      dispatch(login(user, history))
     }
   }
 }

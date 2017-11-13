@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { logOut } from '../actions/user'
-import { NavLink, Redirect } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { Menu, Image } from 'semantic-ui-react'
 import logo from './scite-icon.png'
 

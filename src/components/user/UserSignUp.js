@@ -28,8 +28,8 @@ class UserSignUp extends React.Component {
     e.preventDefault()
     if(this.checkPasswords()){
       const { firstName,lastName, email, password } = this.state
-      const allInfo = { firstName, lastName, email, password, history: this.props.history}
-      this.props.signUp(allInfo)
+      const allInfo = { firstName, lastName, email, password }
+      this.props.signUp(allInfo, this.props.history)
     } else {
       alert("your passwords don't match")
       this.setState({
@@ -83,8 +83,8 @@ class UserSignUp extends React.Component {
 
 function mapDispatchToProps(dispatch) {
   return {
-    signUp: (user) => {
-      dispatch(signUp(user))
+    signUp: (user, history) => {
+      dispatch(signUp(user, history))
     }
   }
 }

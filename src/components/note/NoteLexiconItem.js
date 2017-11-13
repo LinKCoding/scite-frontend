@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { deleteLexicon } from '../../actions/lexicon'
 import { List, Button, Confirm } from 'semantic-ui-react'
@@ -27,7 +27,7 @@ class NoteLexiconItem extends React.Component{
 
   render(){
 
-    const { word, definition, id } = this.props.word
+    const { word, definition } = this.props.word
     return(
       <List.Item>
         <List.Icon name='cloud' />

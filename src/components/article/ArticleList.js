@@ -1,7 +1,7 @@
 import React from 'react'
 import ArticleItem from './ArticleItem'
 import './Article.css'
-import { Header, Table, Container } from 'semantic-ui-react'
+import { Table } from 'semantic-ui-react'
 
 class ArticleList extends React.Component{
   render(){

@@ -18,14 +18,6 @@ export function signUpError(error){
   }
 }
 
-export function setUser(user){
-  //this will also be a fetch and grab info via user id
-  return {
-    type: "SET_USER",
-    payload: user
-  }
-}
-
 export function fetchingAccount(){
   return {
     type: "FETCHING_ACCOUNT"
@@ -51,8 +43,7 @@ export function createdAccount(){
   }
 }
 
-export function login(user){
-  console.log(user)
+export function login(user, history){
   return function(dispatch){
     dispatch(fetchingAccount())
     fetch("https://scite-backend.herokuapp.com/api/v1/login", {
@@ -79,7 +70,7 @@ export function login(user){
       dispatch(loggedIn(userInfo.user_first_name))
     })
     .then(() => {
-      user.history.push("/")
+      history.push("/")
     })
     .catch(err => {
       dispatch(loginError(err))
@@ -88,7 +79,7 @@ export function login(user){
 }
 
 
-export function signUp(user){
+export function signUp(user, history){
   return function(dispatch){
     dispatch(fetchingAccount())
     fetch("https://scite-backend.herokuapp.com/api/v1/users", {
@@ -116,11 +107,9 @@ export function signUp(user){
       dispatch(loggedIn(userInfo.user_id))
     })
     .then(() => {
-      console.log(user.history);
-      user.history.push("/")
+      history.push("/")
     })
     .catch(err => {
-      console.log(err);
       dispatch(signUpError(err))
     })
   }

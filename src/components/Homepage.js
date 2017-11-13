@@ -3,8 +3,8 @@ import ArticleWindow  from './ArticleWindow'
 import { connect } from 'react-redux'
 import { fetchArticlesAndSetLatest } from '../actions/article'
 import { createNote, fetchNotes } from '../actions/note'
-import { Link, Redirect, withRouter } from 'react-router-dom'
-import { Grid, Header, Segment, Button, Dimmer, Loader } from 'semantic-ui-react'
+import { Link, withRouter } from 'react-router-dom'
+import { Grid, Segment, Button, Dimmer, Loader } from 'semantic-ui-react'
 
 
 

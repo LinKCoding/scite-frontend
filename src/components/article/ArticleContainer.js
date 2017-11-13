@@ -3,7 +3,7 @@ import ArticleList from './ArticleList'
 import { connect } from 'react-redux'
 import { fetchArticles } from '../../actions/article'
 import { fetchNotes } from '../../actions/note'
-import { Grid, Segment, Dimmer, Loader } from 'semantic-ui-react'
+import { Grid, Dimmer, Loader } from 'semantic-ui-react'
 
 
 class ArticleContainer extends React.Component {

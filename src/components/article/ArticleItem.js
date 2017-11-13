@@ -1,14 +1,12 @@
 import React from 'react'
-import { Link, Redirect, withRouter } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { createNote } from '../../actions/note'
-import { Table, Image, Button, Container } from 'semantic-ui-react'
+import { Table, Button } from 'semantic-ui-react'
 
 class ArticleItem extends React.Component {
 
   handleClick = () => {
-    console.log(this.props.history);
-    console.log(this.props.info);
     this.props.createNote(this.props.info, this.props.history)
   }
 
