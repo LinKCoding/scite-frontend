@@ -22,7 +22,8 @@ class UserLogin extends React.Component {
       email: "demo",
       password: "demo"
     })
-    this.props.login(this.state, this.props.history)
+    const user = { email: "demo", password: "demo"}
+    this.props.login(user, this.props.history)
   }
 
   handleSubmit = (event) => {
@@ -55,6 +56,7 @@ class UserLogin extends React.Component {
           </Container>
         )
       } else {
+        console.log(this.props);
         return (
           <Container textAlign='left' className="login">
             {this.loginForm()}
