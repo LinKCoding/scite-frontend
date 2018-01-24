@@ -13,7 +13,8 @@ class Navbar extends React.Component {
 
   handleItemClick = (e, { name }) => {
     this.setState({ activeItem: name })
-
+    let link = this.state.activeItem === 'home' ? '' : this.state.activeItem
+    this.props.history.push(`/${link}`)
   }
 
   logOut = (e) => {
@@ -29,18 +30,25 @@ class Navbar extends React.Component {
     if(localStorage.getItem('jwt')){
       return(
         <Menu color='teal' inverted>
-          <Menu.Item name='home' active={activeItem === 'home'} onClick={this.handleItemClick}>
-            <NavLink to="/"><Image src={logo} style={{width:'29px',height:'20px'}} /></NavLink>
-          </Menu.Item>
-          <Menu.Item name='articles' active={activeItem === 'articles'} onClick={this.handleItemClick}>
-            <NavLink to="/articles"> Articles </NavLink>
-          </Menu.Item>
-          <Menu.Item name='lexicon' active={activeItem === 'lexicon'} onClick={this.handleItemClick}>
-            <NavLink to="/lexicon"> Lexicon </NavLink>
-          </Menu.Item>
-          <Menu.Item name='notes' active={activeItem === 'notes'} onClick={this.handleItemClick}>
-            <NavLink to="/notes"> Notes </NavLink>
-          </Menu.Item>
+          <NavLink to="/">
+            <Menu.Item name='home' active={activeItem === 'home'} onClick={this.handleItemClick}>
+              <Image src={logo} style={{width:'29px',height:'20px'}} />
+            </Menu.Item></NavLink>
+          <NavLink to="/articles">
+            <Menu.Item name='articles' active={activeItem === 'articles'} onClick={this.handleItemClick}>
+              <p> Articles </p>
+            </Menu.Item>
+          </NavLink>
+          <NavLink to="/lexicon">
+            <Menu.Item name='lexicon' active={activeItem === 'lexicon'} onClick={this.handleItemClick}>
+              <p>Lexicon</p>
+            </Menu.Item>
+          </NavLink>
+          <NavLink to="/notes">
+            <Menu.Item name='notes' active={activeItem === 'notes'} onClick={this.handleItemClick}>
+              <p> Notes </p>
+            </Menu.Item>
+          </NavLink>
           <Menu.Menu position="right">
             <Menu.Item >
               <h5>
