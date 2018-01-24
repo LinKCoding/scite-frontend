@@ -40,6 +40,7 @@ class Homepage extends React.Component {
     if(this.props.allNotes.fetchedNotes && this.props.articles[0]){
       return (
         <Grid centered columns={2} >
+          <p style={{color:"white"}}>Note: The free trial API sourcing the articles expired, there will not be any new articles or pictures. Thanks for understanding. If you want to continue working on this project, find my contact info at kennylin.me!</p>
           <Grid.Row className="button-font">
             <Segment color="teal" inverted className="button-font">
               <h3>

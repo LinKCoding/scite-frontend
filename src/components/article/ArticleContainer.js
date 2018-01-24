@@ -18,7 +18,6 @@ class ArticleContainer extends React.Component {
           <Grid.Column width={1}>
           </Grid.Column>
           <Grid.Column width={14}>
-            <p style={{color:"white"}}>Note: The free trial API sourcing the articles expired, there will not be any new articles or pictures. Thanks for understanding. If you want to continue working on this project, find my contact info at kennylin.me!</p>
             <ArticleList articles={this.props.articles} notes={this.props.notes}/>
           </Grid.Column>
           <Grid.Column width={1}>
