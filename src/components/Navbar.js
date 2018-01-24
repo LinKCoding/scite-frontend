@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { logOut } from '../actions/user'
-import { NavLink } from 'react-router-dom'
+import { NavLink, withRouter } from 'react-router-dom'
 import { Menu, Image } from 'semantic-ui-react'
 import logo from './scite-icon.png'
 
@@ -11,7 +11,10 @@ class Navbar extends React.Component {
     activeItem: 'home'
   }
 
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+  handleItemClick = (e, { name }) => {
+    this.setState({ activeItem: name })
+
+  }
 
   logOut = (e) => {
     e.preventDefault()
@@ -78,4 +81,4 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-export default connect(null, mapDispatchToProps)(Navbar)
+export default withRouter(connect(null, mapDispatchToProps)(Navbar))
