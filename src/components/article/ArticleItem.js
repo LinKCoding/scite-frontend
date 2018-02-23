@@ -18,7 +18,6 @@ class ArticleItem extends React.Component {
 
     return(
       <Table.Row>
-        <Table.Cell textAlign="center"><img src={thumbnail} alt={name} style={{height:'40px', width:'40px'}}/></Table.Cell>
         <Table.Cell singleLine textAlign="center">
           {formated_date}
         </Table.Cell>
@@ -32,6 +31,9 @@ class ArticleItem extends React.Component {
     )
   }
 }
+
+// removed column for images
+// <Table.Cell textAlign="center"><img src={thumbnail} alt={name} style={{height:'40px', width:'40px'}}/></Table.Cell>
 
 function mapStateToProps(state){
   return {
