@@ -14,7 +14,11 @@ h2, h3, h5 {
 
 a {
   font-family: 'Alegreya SC', sans-serif;
+}
 
+th {
+  font-family: 'Alegreya SC', sans-serif ;
+  font-size: 18px;
 }
 
 .ui .button {

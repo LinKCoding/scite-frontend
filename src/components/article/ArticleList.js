@@ -10,7 +10,6 @@ class ArticleList extends React.Component{
         <Table celled padded>
         <Table.Header>
           <Table.Row>
-            <Table.HeaderCell></Table.HeaderCell>
             <Table.HeaderCell textAlign="center" className='headline'>
               Date
             </Table.HeaderCell>
