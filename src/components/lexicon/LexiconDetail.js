@@ -48,11 +48,8 @@ class LexiconDetail extends React.Component{
 
   render(){
     const { word, note_id } = this.props.word
-    console.log(note_id);
-    console.log(this.props.note);
     return(
       <Grid>
-
         <Grid.Column width={1}>
         </Grid.Column>
         <Grid.Column width={7}>

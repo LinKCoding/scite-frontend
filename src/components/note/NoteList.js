@@ -6,7 +6,6 @@ class NoteList extends React.Component {
   render() {
 
     if(this.props.notes.length !== 0){
-
       return(
         <Table celled padded>
           <Table.Header>
@@ -20,8 +19,6 @@ class NoteList extends React.Component {
             {this.props.notes.map((note, index)=>{ return <NoteDetail key={`note-${index}`} info={note} />})}
           </Table.Body>
         </Table>
-
-
       )
     } else {
       return null

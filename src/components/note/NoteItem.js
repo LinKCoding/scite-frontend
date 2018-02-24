@@ -88,7 +88,7 @@ class NoteItem extends React.Component {
       )
     } else {
       return(
-      null
+        null
       )
     }
   }
